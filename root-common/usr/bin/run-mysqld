@@ -28,4 +28,29 @@ shutdown_local_mysql
 unset_env_vars
 log_volume_info $MYSQL_DATADIR
 log_info 'Running final exec -- Only MySQL server logs after this point'
+
+
+#/bin/bash /usr/libexec/s2i/run
+
+#/opt/rh/rh-mariadb103/root/usr/libexec/mysqld --defaults-file=/etc/my.cnf --skip-networking --socket=/tmp/mysql.sock
+
+# PLEASE REMEMBER TO SET A PASSWORD FOR THE MariaDB root USER !
+# To do so, start the server, then issue the following commands:
+
+# scl enable rh-mariadb103 -- '/opt/rh/rh-mariadb103/root/usr/bin/mysqladmin' -u root password 'new-password'
+# scl enable rh-mariadb103 -- '/opt/rh/rh-mariadb103/root/usr/bin/mysqladmin' -u root -h is-1-mariadb-10-3-1-wgg25 password 'new-password'
+
+# Alternatively you can run:
+# scl enable rh-mariadb103 -- '/opt/rh/rh-mariadb103/root/usr/bin/mysql_secure_installation'
+
+# exec /bin/bash -c "export MYSQL_PWD=${MYSQL_ROOT_PASSWORD} && ${MYSQL_PREFIX}/libexec/mysqld --defaults-file=$MYSQL_DEFAULTS_FILE $@ 2>&1"
+
+# ${MYSQL_PREFIX}/libexec/mysqld --defaults-file=$MYSQL_DEFAULTS_FILE "$@" 2>&1
+# scl enable rh-mariadb103 -- '/opt/rh/rh-mariadb103/root/usr/bin/mysqladmin' -u root password 'new-password'
+# exec ${MYSQL_PREFIX}/libexec/mysqld -uroot -p  --defaults-file=$MYSQL_DEFAULTS_FILE "$@" 2>&1
+# exec bash -c -i "${MYSQL_PREFIX}/libexec/mysqld  --defaults-file=$MYSQL_DEFAULTS_FILE $@ && mysql -uroot -e \"UPDATE mysql.user SET Password=PASSWORD('${MYSQL_ROOT_PASSWORD}') WHERE User='root'; FLUSH PRIVILEGES\""
+
+
+# bash -c -i "exec ${MYSQL_PREFIX}/libexec/mysqld  --defaults-file=$MYSQL_DEFAULTS_FILE $@ && mysql -uroot -e \"UPDATE mysql.user SET Password=PASSWORD('${MYSQL_ROOT_PASSWORD}') WHERE User='root'; FLUSH PRIVILEGES\""
+
 exec ${MYSQL_PREFIX}/libexec/mysqld --defaults-file=$MYSQL_DEFAULTS_FILE "$@" 2>&1
