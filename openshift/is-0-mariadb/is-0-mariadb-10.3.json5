@@ -1,0 +1,183 @@
+{
+  "kind": "Template",
+  "apiVersion": "v1",
+  "metadata": {
+    "name": "Imagen mariadb10.3",
+    "annotations": {
+      "openshift.io/display-name": "imagen-mariadb10.3",
+      "description": "Creamos la imagen mysql  a partir de software collection. Después desplegamos.",
+      "tags": "wordpress,mysql",
+      // "iconClass": "icon-wordpress"
+    },
+    "labels":{
+      "template": "wordpress-mysql"
+    }
+  }, 
+  "parameters": [ 
+    {
+      "name": "PROJECT_NAME",
+      "description": "Nombre del proyecto openshift para poder acceder a su registro de imágenes de docker.",
+      "value": "imagenes-wordpress"
+    },
+    {
+      "name": "APP_NAME",
+      "description": "Nombre de la aplicación.",
+      "value": "is-mariadb-10.3"
+    },
+    {
+      "name": "STRATEGY_TYPE",
+      "description": "Servicio de mysql.",
+      "value": "Docker",
+      "required": true
+    },
+    {
+      "name": "SSH_GITHUB",
+      "description": "Servicio de mysql.",
+      "value": "github-secret-jemiliolopez",
+      "required": true
+    },
+    {
+      "name": "SOURCE_REPOSITORY_MYSQL_URL",
+      "description": "The URL of the quickstart Git repository.",
+      "value": "git@github.com:jemiliolopez/mariadb-container.git",
+      "required": true
+    },
+    {
+      "name": "SOURCE_REPOSITORY_MYSQL_TAG",
+      "description": "The tagged version of the source repository to use.",
+      "value": "main",
+      "required": true
+    },
+    {
+      "name": "MYSQL_USER",
+      "description": "El nombre del host donde se encuentra la base de datos. Generalmente suele ser el nombre del servicio que expone la base de datos.",
+      "value": "user"
+    },
+    {
+      "name": "MYSQL_PASSWORD",
+      "description": "Set the database collation.",
+      "value": "passuser"
+    },
+    // {
+    //   "name": "MYSQL_OPERATIONS_USER",
+    //   "description": "El nombre del host donde se encuentra la base de datos. Generalmente suele ser el nombre del servicio que expone la base de datos.",
+    //   "value": "user"
+    // },
+    // {
+    //   "name": "MYSQL_OPERATIONS_PASSWORD",
+    //   "description": "Set the database collation.",
+    //   "value": "passuser"
+    // },
+    {
+      "name": "MYSQL_DATABASE",
+      "description": "El nombre del host donde se encuentra la base de datos. Generalmente suele ser el nombre del servicio que expone la base de datos.",
+      "value": "db"
+    },
+    {
+      "name": "MYSQL_ROOT_PASSWORD",
+      "description": "Set the database collation.",
+      "value": "passroot"
+    },
+  ],
+  "objects": [
+    {
+      "kind": "ImageStream",
+      "apiVersion": "v1",
+      "metadata": {
+        "name": "${APP_NAME}",
+        "namespace": "${PROJECT_NAME}",
+        "labels": {
+          "app": "${APP_NAME}",
+          "app-service": "${APP_NAME}",
+          "build": "${APP_NAME}"
+        }
+      }
+    },
+    {
+      "kind": "BuildConfig",
+      "apiVersion": "v1",
+      "metadata": {
+         "namespace": "${PROJECT_NAME}",
+        "name": "${APP_NAME}",
+
+        "labels": {
+          "app": "${APP_NAME}",
+          "app-service": "${APP_NAME}", 
+          "build": "${APP_NAME}"
+        }
+      },
+      "spec": {
+        "failedBuildsHistoryLimit": 5,
+        "nodeSelector": null,
+        "output": {
+          "to": {
+            "kind": "ImageStreamTag",
+            "name": "${APP_NAME}:latest"
+          }
+        },
+        "postCommit": {
+        },
+        "resources": {
+        },
+        "triggers": [
+          {
+            "type": "ConfigChange"
+          },
+          {
+            "type": "ImageChange"
+          }
+        ],
+        "runPolicy": "Serial",
+        "source": {
+           "sourceSecret": {
+             "name": "${SSH_GITHUB}"
+          },
+          "type": "Git",
+          // "contextDir": "8.0",
+          "git": {
+            "uri": "${SOURCE_REPOSITORY_MYSQL_URL}",
+            "ref": "${SOURCE_REPOSITORY_MYSQL_TAG}"
+          }
+        },
+        "strategy": {
+          "type": "${STRATEGY_TYPE}", 
+          "dockerStrategy": {
+            "dockerfilePath": "10.3/Dockerfile",
+            // "contextDir": "8.0/",
+            // "forcePull": true,
+            "from": {
+              "kind": "DockerImage",
+              "name": "quay.io/centos7/s2i-core-centos7"
+            },
+            "env": [
+              {
+                "name": "MYSQL_USER",
+                "value": "${MYSQL_USER}"
+              },
+              {
+                "name": "MYSQL_PASSWORD",
+                "value": "${MYSQL_PASSWORD}"
+              },
+              // {
+              //   "name": "MYSQL_OPERATIONS_USER",
+              //   "value": "${MYSQL_OPERATIONS_USER}"
+              // },
+              // {
+              //   "name": "MYSQL_OPERATIONS_PASSWORD",
+              //   "value": "${MYSQL_OPERATIONS_PASSWORD}"
+              // },
+              {
+                "name": "MYSQL_DATABASE",
+                "value": "${MYSQL_DATABASE}"
+              },
+              { 
+                "name": "MYSQL_ROOT_PASSWORD",
+                "value": "${MYSQL_ROOT_PASSWORD}"
+              },
+            ] 
+          }
+        } 
+      }
+    }
+  ]
+}

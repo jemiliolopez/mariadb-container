@@ -1,0 +1,165 @@
+{
+    "kind": "Template",
+    "apiVersion": "v1",
+    "metadata": {
+        "name": "Imagen mariadb10",
+        "annotations": {
+            "openshift.io/display-name": "imagen-mariadb10",
+            "description": "Creamos la imagen mysql  a partir de software collection. Después desplegamos.",
+            "tags": "wordpress,mysql"
+        },
+        "labels": {
+            "template": "wordpress-mysql"
+        }
+    },
+    "parameters": [
+        {
+            "name": "PROJECT_NAME",
+            "description": "Nombre del proyecto openshift para poder acceder a su registro de imágenes de docker.",
+            "value": "imagenes-wordpress"
+        },
+        {
+            "name": "APP_NAME",
+            "description": "Nombre de la aplicación.",
+            "value": "is-mariadb-10.3"
+        },
+        {
+            "name": "STRATEGY_TYPE",
+            "description": "Servicio de mysql.",
+            "value": "Source",
+            "required": true
+        },
+        {
+            "name": "SOURCE_IMAGE_STREAM",
+            "description": "Imagen stream desde la que se parte.",
+            "value": "docker-registry.default.svc:5000/imagenes-wordpress/is-0-mariadb-10.3"
+        },
+        {
+            "name": "SSH_GITHUB",
+            "description": "Servicio de mysql.",
+            "value": "github-secret-jemiliolopez",
+            "required": true
+        },
+        {
+            "name": "SOURCE_REPOSITORY_MYSQL_URL",
+            "description": "The URL of the quickstart Git repository.",
+            "value": "git@github.com:jemiliolopez/mysql-container.git",
+            "required": true
+        },
+        {
+            "name": "SOURCE_REPOSITORY_MYSQL_TAG",
+            "description": "The tagged version of the source repository to use.",
+            "value": "master",
+            "required": true
+        },
+        {
+<<<<<<< HEAD
+            "name": "MYSQL_OPERATIONS_USER",
+=======
+            "name": "MYSQL_USER",
+>>>>>>> 5f0179011f4c032a44e3fd8e7ec4e401a41571f2
+            "description": "El nombre del host donde se encuentra la base de datos. Generalmente suele ser el nombre del servicio que expone la base de datos.",
+            "value": "user"
+        },
+        {
+<<<<<<< HEAD
+            "name": "MYSQL_OPERATIONS_PASSWORD",
+=======
+            "name": "MYSQL_PASSWORD",
+>>>>>>> 5f0179011f4c032a44e3fd8e7ec4e401a41571f2
+            "description": "Set the database collation.",
+            "value": "passuser"
+        },
+        {
+            "name": "MYSQL_DATABASE",
+            "description": "El nombre del host donde se encuentra la base de datos. Generalmente suele ser el nombre del servicio que expone la base de datos.",
+            "value": "db"
+        },
+        {
+            "name": "MYSQL_ROOT_PASSWORD",
+            "description": "Set the database collation.",
+            "value": "passroot"
+        }
+    ],
+    "objects": [
+        {
+            "kind": "ImageStream",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "${APP_NAME}",
+                "namespace": "${PROJECT_NAME}",
+                "labels": {
+                    "app": "${APP_NAME}",
+                    "app-service": "${APP_NAME}",
+                    "build": "${APP_NAME}"
+                }
+            }
+        },
+        {
+            "apiVersion": "build.openshift.io/v1",
+            "kind": "BuildConfig",
+            "metadata": {
+                "name": "${APP_NAME}",
+                "namespace": "${PROJECT_NAME}",
+                "labels": {
+                    "app": "${APP_NAME}",
+                    "app-service": "${APP_NAME}",
+                    "build": "${APP_NAME}"
+                }
+            },
+            "spec": {
+                "failedBuildsHistoryLimit": 5,
+                "nodeSelector": null,
+                "output": {
+                    "to": {
+                        "kind": "ImageStreamTag",
+                        "name": "${APP_NAME}:latest"
+                    }
+                },
+                "postCommit": {},
+                "resources": {},
+                "runPolicy": "Serial",
+                "source": {
+                    "sourceSecret": {
+                        "name": "${SSH_GITHUB}"
+                    },
+<<<<<<< HEAD
+                    "contextDir": "examples/extend-image",
+=======
+                    "contextDir": "examples/extend-image/mysql-cfg",
+>>>>>>> 5f0179011f4c032a44e3fd8e7ec4e401a41571f2
+                    "git": {
+                        "ref": "${SOURCE_REPOSITORY_MYSQL_TAG}",
+                        "uri": "${SOURCE_REPOSITORY_MYSQL_URL}"
+                    },
+                    "type": "Git"
+                },
+                "type": "${STRATEGY_TYPE}",
+                "strategy": {
+                    "type": "${STRATEGY_TYPE}",
+                    "sourceStrategy": {
+                        "from": {
+                            "kind": "ImageStreamTag",
+                            "namespace": "${PROJECT_NAME}",
+                            "name": "${SOURCE_IMAGE_STREAM}"
+                        }
+                    }
+                },
+                "triggers": [
+                    {
+                        "generic": {
+                            "secret": "F-ilfroO9PAhjTRSWX67"
+                        },
+                        "type": "Generic"
+                    },
+                    {
+                        "type": "ConfigChange"
+                    },
+                    {
+                        "type": "ImageChange"
+                    }
+                ]
+            }
+        }
+    ]
+}
