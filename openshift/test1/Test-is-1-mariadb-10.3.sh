@@ -37,6 +37,7 @@ oc process -f ./../build/Test-is-1-mariadb-10.3.json \
    -p MYSQL_OPERATIONS_USER="$MYSQL_OPERATIONS_USER" \
    -p MYSQL_OPERATIONS_PASSWORD="$MYSQL_OPERATIONS_PASSWORD" \
    -p MYSQL_DATABASE="$MYSQL_DATABASE" \
+   -p MYSQL_ROOT_PASSWORD="$MYSQL_ROOT_PASSWORD" \
     | oc apply -f -
 
 

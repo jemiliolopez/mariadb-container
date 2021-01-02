@@ -14,13 +14,13 @@ iniciar_entorno () {
     # export STRATEGY_TYPE="Docker"
     export SSH_GITHUB="github-secret-jemiliolopez"
     export SOURCE_REPOSITORY_MYSQL_URL="git@github.com:jemiliolopez/mariadb-container.git"
-    export SOURCE_REPOSITORY_MYSQL_TAG="main"
+    export SOURCE_REPOSITORY_MYSQL_TAG="dev"
     export MYSQL_USER="user" 
     export MYSQL_PASSWORD="passuser"
     export MYSQL_OPERATIONS_USER="operuser" 
     export MYSQL_OPERATIONS_PASSWORD="passoperuser" 
     export MYSQL_DATABASE="db" 
-    # export MYSQL_ROOT_PASSWORD="passroot" 
+    export MYSQL_ROOT_PASSWORD="passroot" 
 
 
 }

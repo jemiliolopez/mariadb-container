@@ -52,6 +52,7 @@ mysql_password_regex='^[a-zA-Z0-9_~!@#$%^&*()-=<>,.?;:|]+$'
 
 # Variables that are used to connect to local mysql during initialization
 mysql_flags="-u root --socket=/tmp/mysql.sock"
+# mysql_flags="-u root -p ${MYSQL_ROOT_PASSWORD} --socket=/tmp/mysql.sock"
 admin_flags="--defaults-file=$MYSQL_DEFAULTS_FILE $mysql_flags"
 
 # Make sure env variables don't propagate to mysqld process.
