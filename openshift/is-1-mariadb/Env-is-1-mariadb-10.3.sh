@@ -8,7 +8,7 @@ entorno() {
     export SOURCE_IMAGE_STREAM="is-0-mariadb-10-3:latest"
     export SSH_GITHUB="github-secret-jemiliolopez"
     export SOURCE_REPOSITORY_MYSQL_URL="git@github.com:jemiliolopez/mariadb-container.git"
-    export SOURCE_REPOSITORY_MYSQL_TAG="main"
+    export SOURCE_REPOSITORY_MYSQL_TAG="dev"
     export MYSQL_USER="user" 
     export MYSQL_PASSWORD="passuser" 
     export MYSQL_OPERATIONS_USER="operuser" 

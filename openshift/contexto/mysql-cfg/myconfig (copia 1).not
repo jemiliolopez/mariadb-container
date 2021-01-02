@@ -1,0 +1,7 @@
+[mysqld]
+query-cache-limit=262144
+
+
+[mysql_install_db]
+auth_root_authentication_method=normal
+

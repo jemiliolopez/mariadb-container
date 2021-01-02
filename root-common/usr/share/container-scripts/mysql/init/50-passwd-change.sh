@@ -23,11 +23,16 @@ EOSQL
     if [ "$MYSQL_VERSION" \> "10.0" ] ; then
 mysql $mysql_flags <<EOSQL
       CREATE USER IF NOT EXISTS 'root'@'%';
+      UPDATE mysql.user SET Password=PASSWORD('${MYSQL_ROOT_PASSWORD}') WHERE User='root';
 EOSQL
     fi
 mysql $mysql_flags <<EOSQL
       GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY '${MYSQL_ROOT_PASSWORD}' WITH GRANT OPTION;
+      GRANT ALL PRIVILEGES ON *.* TO 'root'@'localhost' IDENTIFIED BY '${MYSQL_ROOT_PASSWORD}' WITH GRANT OPTION;
+      FLUSH PRIVILEGES;
 EOSQL
+export MYSQL_PWD=${MYSQL_ROOT_PASSWORD}
+# mysql_flags+=" -p ${MYSQL_ROOT_PASSWORD}"
   else
     if [ "$MYSQL_VERSION" \> "10.0" ] ; then
 mysql $mysql_flags <<EOSQL

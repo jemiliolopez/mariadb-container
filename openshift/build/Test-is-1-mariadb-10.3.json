@@ -86,6 +86,11 @@
             "name": "MYSQL_DATABASE",
             "description": "El nombre del host donde se encuentra la base de datos. Generalmente suele ser el nombre del servicio que expone la base de datos.",
             "value": "db"
+        },
+        {
+            "name": "MYSQL_ROOT_PASSWORD",
+            "description": "Set the database collation.",
+            "value": "passroot"
         }
     ],
     "objects": [
@@ -151,6 +156,10 @@
                                     {
                                         "name": "MYSQL_DATABASE",
                                         "value": "${MYSQL_DATABASE}"
+                                    },
+                                    {
+                                        "name": "MYSQL_ROOT_PASSWORD",
+                                        "value": "${MYSQL_ROOT_PASSWORD}"
                                     }
                                 ]
                             }
