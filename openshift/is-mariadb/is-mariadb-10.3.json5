@@ -31,11 +31,11 @@
       "required": true
     },
     {
-      "name": "SSH_GITHUB",
-      "description": "Servicio de mysql.",
-      "value": "github-secret-jemiliolopez",
+      "name": "SSH_PRIVATE_KEY",
+      "description": "Path dónde se encuentra la clave privada ssh.",
+      "value": "/home/emilio/.ssh/id_rsa",
       "required": true
-    },
+    }, 
     {
       "name": "SOURCE_REPOSITORY_MYSQL_URL",
       "description": "The URL of the quickstart Git repository.",
@@ -81,6 +81,58 @@
   ],
   "objects": [
     {
+      "kind": "Secret",
+      "apiVersion": "v1",
+      "metadata": {
+        "name": "ssh-github",
+        "namespace": "${PROJECT_NAME}",
+        "labels": {
+          "app": "${APP_NAME}",
+          "app-service": "${APP_NAME}",
+          "build": "${APP_NAME}"
+        }
+      },
+      "type": "kubernetes.io/ssh-auth",
+      "data": {
+        "ssh-privatekey": "${SSH_PRIVATE_KEY}"
+      }
+    },
+    {
+      "kind": "Secret",
+      "apiVersion": "v1",
+      "metadata": {
+        "name": "${APP_NAME}-secret",
+        "namespace": "${PROJECT_NAME}",
+        "labels": {
+          "app": "${APP_NAME}",
+          "app-service": "${APP_NAME}",
+          "build": "${APP_NAME}"
+        }
+      },
+      "type": "Opaque",
+      "stringData": {
+        "mysql.password": "${MYSQL_PASSWORD}",
+        "mysql.root.password": "${MYSQL_ROOT_PASSWORD}",
+      }
+    },
+    {
+      "kind": "ConfigMap",
+      "apiVersion": "v1",
+      "metadata": {
+        "name": "${APP_NAME}-cfmap",
+        "namespace": "${PROJECT_NAME}",
+        "labels": {
+          "app": "${APP_NAME}",
+          "app-service": "${APP_NAME}",
+          "build": "${APP_NAME}"
+        }
+      },
+      "data": {
+        "mysql.user": "${MYSQL_USER}",
+        "mysql.database": "${MYSQL_DATABASE}",
+      }
+    },
+    {
       "kind": "ImageStream",
       "apiVersion": "v1",
       "metadata": {
@@ -116,7 +168,6 @@
           }
         },
         "postCommit": {
-          args: ["export", "MYSQL_PASSWORD", "=", "''"]
         },
         "resources": {
         },
@@ -131,7 +182,8 @@
         "runPolicy": "Serial",
         "source": {
            "sourceSecret": {
-             "name": "${SSH_GITHUB}"
+             // "name": "${SSH_GITHUB}"
+             "name": "ssh-github"
           },
           "type": "Git",
           // "contextDir": "8.0",
@@ -151,14 +203,24 @@
               "name": "quay.io/centos7/s2i-core-centos7"
             },
             "env": [
-              {
-                "name": "MYSQL_USER",
-                "value": "${MYSQL_USER}"
-              },
-              {
-                "name": "MYSQL_PASSWORD",
-                "value": "${MYSQL_PASSWORD}"
-              },
+              // {
+              //   "name": "MYSQL_USER",
+              //    "valueFrom": {
+              //     "configMapKeyRef": {
+              //       "name": "${APP_NAME}-cfmap",
+              //       "key": "mysql.user"
+              //     }
+              //   }
+              // },
+              // {
+              //   "name": "MYSQL_PASSWORD",
+              //   "valueFrom": {
+              //     "secretKeyRef": {
+              //       "name": "${APP_NAME}-secret",
+              //       "key": "mysql.password"
+              //     }
+              //   }
+              // },
               // {
               //   "name": "MYSQL_OPERATIONS_USER",
               //   "value": "${MYSQL_OPERATIONS_USER}"
@@ -168,13 +230,23 @@
               //   "value": "${MYSQL_OPERATIONS_PASSWORD}"
               // },
               {
-                "name": "MYSQL_DATABASE", 
-                "value": "${MYSQL_DATABASE}"
+                "name": "MYSQL_DATABASE",
+                 "valueFrom": {
+                  "configMapKeyRef": {
+                    "name": "${APP_NAME}-cfmap",
+                    "key": "mysql.database"
+                  }
+                }
               },
-              // { 
-              //   "name": "MYSQL_ROOT_PASSWORD",
-              //   "value": "${MYSQL_ROOT_PASSWORD}"
-              // },
+              { 
+                "name": "MYSQL_ROOT_PASSWORD",
+                "valueFrom": {
+                  "secretKeyRef": {
+                    "name": "${APP_NAME}-secret",
+                    "key": "mysql.root.password"
+                  }
+                }
+              }
             ] 
           }
         } 

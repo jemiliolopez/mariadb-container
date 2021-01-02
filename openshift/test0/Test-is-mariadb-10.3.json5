@@ -85,11 +85,51 @@
     {
       "name": "MYSQL_ROOT_PASSWORD",
       "description": "Set the database collation.",
+      "value": ""
+    },
+    {
+      "name": "ROOT_PASSWORD",
+      "description": "Set the database collation.",
       "value": "passroot"
     }
     
   ],
-  "objects": [
+   "objects": [
+    {
+      "kind": "Secret",
+      "apiVersion": "v1",
+      "metadata": {
+        "name": "${APP_NAME}-secret",
+        "namespace": "${PROJECT_NAME}",
+        "labels": {
+          "app": "${APP_NAME}",
+          "app-service": "${APP_NAME}",
+          "build": "${APP_NAME}"
+        }
+      },
+      "type": "Opaque",
+      "stringData": {
+        "mysql.password": "${MYSQL_PASSWORD}",
+        "mysql.root.password": "${ROOT_PASSWORD}",
+      }
+    },
+    {
+      "kind": "ConfigMap",
+      "apiVersion": "v1",
+      "metadata": {
+        "name": "${APP_NAME}-cfmap",
+        "namespace": "${PROJECT_NAME}",
+        "labels": {
+          "app": "${APP_NAME}",
+          "app-service": "${APP_NAME}",
+          "build": "${APP_NAME}"
+        }
+      },
+      "data": {
+        "mysql.user": "${MYSQL_USER}",
+        "mysql.database": "${MYSQL_DATABASE}",
+      }
+    },
      {
             "kind": "DeploymentConfig",
             "apiVersion": "v1",
@@ -101,7 +141,10 @@
                     "build": "${APP_NAME}"
                 }
             },
-            "spec": {
+       "spec": {
+         "securityContext": {
+           "runAsUser": "27"
+         }, 
                 "strategy": {
                     "type": "Rolling"
                 },
@@ -145,12 +188,40 @@
                               "env": [
                                 {
                                   "name": "MYSQL_USER",
-                                  "value": "${MYSQL_USER}"
+                                  "valueFrom": {
+                                    "configMapKeyRef": {
+                                      "name": "${APP_NAME}-cfmap",
+                                      "key": "mysql.user"
+                                    }
+                                  }
                                 },
                                 {
                                   "name": "MYSQL_PASSWORD",
-                                  "value": "${MYSQL_PASSWORD}"
+                                  "valueFrom": {
+                                    "secretKeyRef": {
+                                      "name": "${APP_NAME}-secret",
+                                      "key": "mysql.password"
+                                    }
+                                  }
                                 },
+                                {
+                                  "name": "MYSQL_DATABASE",
+                                  "valueFrom": {
+                                    "configMapKeyRef": {
+                                      "name": "${APP_NAME}-cfmap",
+                                      "key": "mysql.database"
+                                    }
+                                  }
+                                },
+                                { 
+                                  "name": "MYSQL_ROOT_PASSWORD",
+                                  "valueFrom": {
+                                    "secretKeyRef": {
+                                      "name": "${APP_NAME}-secret",
+                                      "key": "mysql.root.password"
+                                    }
+                                  }
+                                }
                                     // {
                                     //     "name": "MYSQL_OPERATIONS_USER",
                                     //     "value": "${MYSQL_OPERATIONS_USER}"
@@ -159,14 +230,6 @@
                                     //     "name": "MYSQL_OPERATIONS_PASSWORD",
                                     //     "value": "${MYSQL_OPERATIONS_PASSWORD}"
                                     // },
-                                    {
-                                        "name": "MYSQL_DATABASE",
-                                        "value": "${MYSQL_DATABASE}"
-                                    },
-                                    {
-                                        "name": "MYSQL_ROOT_PASSWORD",
-                                        "value": "${MYSQL_ROOT_PASSWORD}"
-                                    }
                                 ],
                                 // "volumeMounts": [
                                 //     {
