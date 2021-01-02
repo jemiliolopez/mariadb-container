@@ -50,6 +50,12 @@ mkdir -p /var/lib/mysql/data
 chown -R mysql:0 /var/lib/mysql
 restorecon -R /var/lib/mysql
 
+echo "unset MYSQL_PASSWORD" > /etc/profile.d/mimysql.sh
+echo "unset MYSQL_USER" >> /etc/profile.d/mimysql.sh
+echo "unset MYSQL_DATABASE" >> /etc/profile.d/mimysql.sh
+
+chmod 644 /etc/profile.d/mimysql.sh
+
 # Loosen permission bits for group to avoid problems running container with
 # arbitrary UID
 # When only specifying user, group is 0, that's why /var/lib/mysql must have
