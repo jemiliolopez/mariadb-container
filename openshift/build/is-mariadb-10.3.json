@@ -61,6 +61,11 @@
             "name": "MYSQL_DATABASE",
             "description": "El nombre del host donde se encuentra la base de datos. Generalmente suele ser el nombre del servicio que expone la base de datos.",
             "value": "db"
+        },
+        {
+            "name": "MYSQL_ROOT_PASSWORD",
+            "description": "Set the database collation.",
+            "value": "passroot"
         }
     ],
     "objects": [
@@ -95,8 +100,8 @@
             },
             "type": "Opaque",
             "stringData": {
-                "mysql.password": "${MYSQL_PASSWORD}",
-                "mysql.root.password": "${MYSQL_ROOT_PASSWORD}"
+                "mysql.password": "passuser",
+                "mysql.root.password": "passroot"
             }
         },
         {
@@ -112,8 +117,8 @@
                 }
             },
             "data": {
-                "mysql.user": "${MYSQL_USER}",
-                "mysql.database": "${MYSQL_DATABASE}"
+                "mysql.user": "user",
+                "mysql.database": "db"
             }
         },
         {
@@ -179,6 +184,24 @@
                             "name": "quay.io/centos7/s2i-core-centos7"
                         },
                         "env": [
+                            {
+                                "name": "MYSQL_USER",
+                                "valueFrom": {
+                                    "configMapKeyRef": {
+                                        "name": "${APP_NAME}-cfmap",
+                                        "key": "mysql.user"
+                                    }
+                                }
+                            },
+                            {
+                                "name": "MYSQL_PASSWORD",
+                                "valueFrom": {
+                                    "secretKeyRef": {
+                                        "name": "${APP_NAME}-secret",
+                                        "key": "mysql.password"
+                                    }
+                                }
+                            },
                             {
                                 "name": "MYSQL_DATABASE",
                                 "valueFrom": {

@@ -69,8 +69,8 @@
             },
             "type": "Opaque",
             "stringData": {
-                "mysql.password": "${MYSQL_PASSWORD}",
-                "mysql.root.password": "${ROOT_PASSWORD}"
+                "mysql.password": "amigo",
+                "mysql.root.password": "enemigo"
             }
         },
         {
@@ -86,8 +86,8 @@
                 }
             },
             "data": {
-                "mysql.user": "${MYSQL_USER}",
-                "mysql.database": "${MYSQL_DATABASE}"
+                "mysql.user": "gente",
+                "mysql.database": "puedeser"
             }
         },
         {

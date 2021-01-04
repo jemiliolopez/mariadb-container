@@ -116,7 +116,7 @@
           }
         },
         "postCommit": {
-          args: ["export", "MYSQL_PASSWORD", "=", "''"]
+          
         },
         "resources": {
         },

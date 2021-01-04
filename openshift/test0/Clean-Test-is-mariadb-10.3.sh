@@ -29,9 +29,5 @@
 oc process -f ./../build/Test-is-mariadb-10.3.json \
    -p PROJECT_NAME="$PROJECT_NAME" \
    -p APP_NAME="$APP_NAME" \
-   -p MYSQL_USER="$MYSQL_USER" \
-   -p MYSQL_PASSWORD="$MYSQL_PASSWORD" \
-   -p MYSQL_DATABASE="$MYSQL_DATABASE" \
-   -p MYSQL_ROOT_PASSWORD="$MYSQL_ROOT_PASSWORD" \
     | oc delete -f -
 

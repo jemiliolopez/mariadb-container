@@ -50,11 +50,50 @@ mkdir -p /var/lib/mysql/data
 chown -R mysql:0 /var/lib/mysql
 restorecon -R /var/lib/mysql
 
-echo "unset MYSQL_PASSWORD" > /etc/profile.d/mimysql.sh
+# echo "unset -f MYSQL_PASSWORD" >> /etc/profile.d/sh.local
+# echo "unset MYSQL_USER" >> /etc/profile.d/sh.local
+# echo "unset MYSQL_DATABASE" >> /etc/profile.d/sh.local
+
+
+# echo "MYSQL_PASSWORD=''" >> /etc/profile.d/sh.local
+# echo "MYSQL_USER=''" >> /etc/profile.d/sh.local
+# echo "MYSQL_DATABASE=''" >> /etc/profile.d/sh.local
+
+# echo "unset MYSQL_PASSWORD" >> /etc/profile.d/csh.local
+# echo "unset MYSQL_USER" >> /etc/profile.d/csh.local
+# echo "unset MYSQL_DATABASE" >> /etc/profile.d/csh.local
+
+# echo "unset MYSQL_PASSWORD" > /etc/bash.bashrc
+# echo "unset MYSQL_USER" >> /etc/bash.bashrc
+# echo "unset MYSQL_DATABASE" >> /etc/bash.bashrc
+
+# <<<<<<< HEAD
+echo "alias sh='/bin/bash 2>/dev/null'" > /etc/profile.d/mimysql.sh
+echo "unset MYSQL_PASSWORD" >> /etc/profile.d/mimysql.sh
 echo "unset MYSQL_USER" >> /etc/profile.d/mimysql.sh
 echo "unset MYSQL_DATABASE" >> /etc/profile.d/mimysql.sh
 
-chmod 644 /etc/profile.d/mimysql.sh
+echo "alias sh='/bin/bash 2>/dev/null'" >  /var/lib/mysql/.bashrc
+echo "source /etc/profile" >> /var/lib/mysql/.bashrc
+chmod 0444 /var/lib/mysql/.bashrc
+# =======
+# echo "source /etc/profile" >> /var/lib/mysql/.bashrc
+# echo "unset MYSQL_USER" >> /var/lib/mysql/.bashrc
+# echo "unset MYSQL_DATABASE" >> /var/lib/mysql/.bashrc
+
+
+# echo "unset MYSQL_PASSWORD" >> /etc/environment
+# echo "unset MYSQL_USER" >> /etc/environment
+# echo "unset MYSQL_DATABASE" >> /etc/environment
+
+
+
+# echo "unset MYSQL_PASSWORD" >> /etc/bashrc
+# echo "unset MYSQL_USER" >> /etc/bashrc
+# echo "unset MYSQL_DATABASE" >> /etc/bashrc
+
+
+# chmod 0444 /var/lib/mysql/.bashrc
 
 # Loosen permission bits for group to avoid problems running container with
 # arbitrary UID

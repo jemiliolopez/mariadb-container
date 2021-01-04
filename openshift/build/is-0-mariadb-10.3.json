@@ -97,12 +97,7 @@
                         "name": "${APP_NAME}:latest"
                     }
                 },
-                "postCommit": {
-                    "args": [
-                        "unset",
-                        "MYSQL_PASSWORD"
-                    ]
-                },
+                "postCommit": {},
                 "resources": {},
                 "triggers": [
                     {

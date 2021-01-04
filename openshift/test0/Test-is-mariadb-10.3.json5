@@ -109,8 +109,8 @@
       },
       "type": "Opaque",
       "stringData": {
-        "mysql.password": "${MYSQL_PASSWORD}",
-        "mysql.root.password": "${ROOT_PASSWORD}",
+        "mysql.password": "amigo",
+        "mysql.root.password": "enemigo",
       }
     },
     {
@@ -126,11 +126,11 @@
         }
       },
       "data": {
-        "mysql.user": "${MYSQL_USER}",
-        "mysql.database": "${MYSQL_DATABASE}",
+        "mysql.user": "gente",
+        "mysql.database": "puedeser",
       }
     },
-     {
+     { 
             "kind": "DeploymentConfig",
             "apiVersion": "v1",
             "metadata": {
@@ -218,7 +218,7 @@
                                   "valueFrom": {
                                     "secretKeyRef": {
                                       "name": "${APP_NAME}-secret",
-                                      "key": "mysql.root.password"
+                                      "key": "mysql.root.password" 
                                     }
                                   }
                                 }
@@ -230,7 +230,14 @@
                                     //     "name": "MYSQL_OPERATIONS_PASSWORD",
                                     //     "value": "${MYSQL_OPERATIONS_PASSWORD}"
                                     // },
-                                ],
+                              ],
+                              // "lifecycle": {
+                              //   "postStart": {
+                              //     "exec": {
+                              //       "command": [ "/bin/sh", "-c", "env", "-u", "MYSQL_USER", "/bin/sh", "-l" ]
+                              //     }
+                              //   }
+                              // },
                                 // "volumeMounts": [
                                 //     {
                                 //         "name": "${APP_NAME}-wpp-data",
@@ -238,7 +245,7 @@
                                 //     }
                                 // ]
                             }
-                        ],
+                        ], 
                         // "volumes": [
                         //     {
                         //         "name": "${APP_NAME}-wpp-data",
