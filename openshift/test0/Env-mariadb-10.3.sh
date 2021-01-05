@@ -9,7 +9,7 @@ iniciar_entorno () {
 
 
     export PROJECT_NAME="imagenes-wordpress"
-    export APP_NAME="is-mariadb-10-3"
+    export APP_NAME="is-1-mariadb-10-3"
     export MYSQL_USER="user" 
     export MYSQL_PASSWORD="paso" 
     export MYSQL_DATABASE="db" 

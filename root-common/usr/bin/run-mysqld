@@ -53,5 +53,25 @@ log_info 'Running final exec -- Only MySQL server logs after this point'
 
 # bash -c -i "exec ${MYSQL_PREFIX}/libexec/mysqld  --defaults-file=$MYSQL_DEFAULTS_FILE $@ && mysql -uroot -e \"UPDATE mysql.user SET Password=PASSWORD('${MYSQL_ROOT_PASSWORD}') WHERE User='root'; FLUSH PRIVILEGES\""
 
+# echo "unset MYSQL_PASSWORD" >> '/etc/environment'
+# echo "unset MYSQL_ROOT_PASSWORD" >> '/etc/environment'
+# echo "unset MYSQL_USER" >> '/etc/environment'
+# echo "unset MYSQL_DATABASE" >> '/etc/environment'
+# echo "export ENV='/etc/environment'" >> '/etc/environment'
+# echo "export BASH_ENV='/etc/environment'" >>  '/etc/environment'
+
+# export BASH_ENV=/etc/environment
+
+# source /etc/environment bash -l
+
+log_info "MYSQL_PREFIX/libexec/mysqld >>> ${MYSQL_PREFIX}/libexec/mysqld"
+
+log_info "MYSQL_DEFAULTS_FILE >>> $MYSQL_DEFAULTS_FILE"
+
+
+log_info "$(cat \" $MYSQL_DEFAULTS_FILE\")"
+
+cat "$MYSQL_DEFAULTS_FILE"
+
 
 exec ${MYSQL_PREFIX}/libexec/mysqld --defaults-file=$MYSQL_DEFAULTS_FILE "$@" 2>&1

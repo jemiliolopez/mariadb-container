@@ -221,7 +221,7 @@
                                       "key": "mysql.root.password" 
                                     }
                                   }
-                                }
+                                },
                                     // {
                                     //     "name": "MYSQL_OPERATIONS_USER",
                                     //     "value": "${MYSQL_OPERATIONS_USER}"
@@ -229,9 +229,18 @@
                                     // {
                                     //     "name": "MYSQL_OPERATIONS_PASSWORD",
                                     //     "value": "${MYSQL_OPERATIONS_PASSWORD}"
-                                    // },
-                              ],
-                              // "lifecycle": {
+                                // },
+                                {
+                                  "name": "ENV",
+                                  "value": "/etc/environment"
+                                },
+                                // {
+                                //   "name": "BASH_ENV",
+                                //   "value": "/var/lib/mysql/.bashrc"
+                                // },
+
+                              ], 
+                              // "lifecycle": { 
                               //   "postStart": {
                               //     "exec": {
                               //       "command": [ "/bin/sh", "-c", "env", "-u", "MYSQL_USER", "/bin/sh", "-l" ]

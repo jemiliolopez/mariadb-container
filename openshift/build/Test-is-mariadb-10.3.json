@@ -171,6 +171,10 @@
                                                 "key": "mysql.root.password"
                                             }
                                         }
+                                    },
+                                    {
+                                        "name": "ENV",
+                                        "value": "/etc/environment"
                                     }
                                 ]
                             }

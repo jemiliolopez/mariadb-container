@@ -77,16 +77,22 @@ restorecon -R /var/lib/mysql
 # echo "source /etc/profile" >> /var/lib/mysql/.bashrc
 # chmod 0444 /var/lib/mysql/.bashrc
 # =======
-# echo "source /etc/profile" >> /var/lib/mysql/.bashrc
-# echo "unset MYSQL_USER" >> /var/lib/mysql/.bashrc
-# echo "unset MYSQL_DATABASE" >> /var/lib/mysql/.bashrc
-
-echo "unset MYSQL_PASSWORD" >> '/etc/environment'
-echo "unset MYSQL_ROOT_PASSWORD" >> '/etc/environment'
-echo "unset MYSQL_USER" >> '/etc/environment'
-echo "unset MYSQL_DATABASE" >> '/etc/environment'
-echo "export ENV='/etc/environment'" >> '/etc/environment'
-echo "export BASH_ENV='/etc/environment'" >>  '/etc/environment'
+#echo "source /etc/profile" > '/var/lib/mysql/.bashrc'
+# echo "unset MYSQL_USER" >> '/var/lib/mysql/.bashrc'
+# echo "unset MYSQL_DATABASE" >> '/var/lib/mysql/.bashrc'
+# echo "unset MYSQL_PASSWORD" >> '/var/lib/mysql/.bashrc'
+# echo "export BASH_ENV='/etc/environment'" >>  '/var/lib/mysql/.bashrc'
+# echo "unset MYSQL_ROOT_PASSWORD" >> '/var/lib/mysql/.bashrc'
+# chmod root:root '/var/lib/mysql/.bashrc'
+# chmod 0444 '/var/lib/mysql/.bashrc'
+# chattr +i '/var/lib/mysql/.bashrc'
+# echo "unset MYSQL_PASSWORD" >> '/etc/environment'
+# echo "unset MYSQL_ROOT_PASSWORD" >> '/etc/environment'
+# echo "unset MYSQL_USER" >> '/etc/environment'
+# echo "unset MYSQL_DATABASE" >> '/etc/environment'
+# echo "export ENV='/etc/environment'" >> '/etc/environment'
+# echo "export BASH_ENV='/etc/environment'" >>  '/etc/environment'
+#  echo "unset MYSQL_VERSION" >> '/etc/environment'
 
 # echo "unset MYSQL_PASSWORD" >> /etc/bashrc
 # echo "unset MYSQL_USER" >> /etc/bashrc
@@ -94,6 +100,13 @@ echo "export BASH_ENV='/etc/environment'" >>  '/etc/environment'
 
 
 # chmod 0444 /var/lib/mysql/.bashrc
+
+chown mysql:root /etc/opt/rh/rh-mariadb103/my.cnf
+chmod 0600 /etc/opt/rh/rh-mariadb103/my.cnf
+
+
+
+
 
 # Loosen permission bits for group to avoid problems running container with
 # arbitrary UID
