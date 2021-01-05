@@ -7,8 +7,8 @@ mysql_get_config_files_scl() {
         grep --after=1 '^Default options' | \
         tail -n 1 | \
         grep -o '[^ ]*opt[^ ]*my.cnf'
-}
 
+}
 # This function picks the main config file that deamon uses and we ship in rpm
 mysql_get_correct_config() {
     # we use the same config in non-SCL packages, not necessary to guess
@@ -19,7 +19,8 @@ mysql_get_correct_config() {
         [ -f "$f" ] && echo "$f"
     done | head -n 1
 }
-
+export ENV='/etc/environment'
+export BASH_ENV='/etc/environment'
 export MYSQL_CONFIG_FILE=$(mysql_get_correct_config)
 
 [ -z "$MYSQL_CONFIG_FILE" ] && echo "MYSQL_CONFIG_FILE is empty" && exit 1
@@ -68,25 +69,25 @@ restorecon -R /var/lib/mysql
 # echo "unset MYSQL_DATABASE" >> /etc/bash.bashrc
 
 # <<<<<<< HEAD
-echo "alias sh='/bin/bash 2>/dev/null'" > /etc/profile.d/mimysql.sh
-echo "unset MYSQL_PASSWORD" >> /etc/profile.d/mimysql.sh
-echo "unset MYSQL_USER" >> /etc/profile.d/mimysql.sh
-echo "unset MYSQL_DATABASE" >> /etc/profile.d/mimysql.sh
+# echo "alias sh='/bin/bash 2>/dev/null'" > /etc/profile.d/mimysql.sh
+# echo "unset MYSQL_PASSWORD" >> /etc/profile.d/mimysql.sh
+# echo "unset MYSQL_USER" >> /etc/profile.d/mimysql.sh
+# echo "unset MYSQL_DATABASE" >> /etc/profile.d/mimysql.sh
 
-echo "alias sh='/bin/bash 2>/dev/null'" >  /var/lib/mysql/.bashrc
-echo "source /etc/profile" >> /var/lib/mysql/.bashrc
-chmod 0444 /var/lib/mysql/.bashrc
+# echo "alias sh='/bin/bash 2>/dev/null'" >  /var/lib/mysql/.bashrc
+# echo "source /etc/profile" >> /var/lib/mysql/.bashrc
+# chmod 0444 /var/lib/mysql/.bashrc
 # =======
 # echo "source /etc/profile" >> /var/lib/mysql/.bashrc
 # echo "unset MYSQL_USER" >> /var/lib/mysql/.bashrc
 # echo "unset MYSQL_DATABASE" >> /var/lib/mysql/.bashrc
 
-
-# echo "unset MYSQL_PASSWORD" >> /etc/environment
-# echo "unset MYSQL_USER" >> /etc/environment
-# echo "unset MYSQL_DATABASE" >> /etc/environment
-
-
+echo "unset MYSQL_PASSWORD" >> '/etc/environment'
+echo "unset MYSQL_ROOT_PASSWORD" >> '/etc/environment'
+echo "unset MYSQL_USER" >> '/etc/environment'
+echo "unset MYSQL_DATABASE" >> '/etc/environment'
+echo "export ENV='/etc/environment'" >> '/etc/environment'
+echo "export BASH_ENV='/etc/environment'" >>  '/etc/environment'
 
 # echo "unset MYSQL_PASSWORD" >> /etc/bashrc
 # echo "unset MYSQL_USER" >> /etc/bashrc
