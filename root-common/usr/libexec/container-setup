@@ -19,8 +19,7 @@ mysql_get_correct_config() {
         [ -f "$f" ] && echo "$f"
     done | head -n 1
 }
-export ENV='/etc/environment'
-export BASH_ENV='/etc/environment'
+
 export MYSQL_CONFIG_FILE=$(mysql_get_correct_config)
 
 [ -z "$MYSQL_CONFIG_FILE" ] && echo "MYSQL_CONFIG_FILE is empty" && exit 1

@@ -12,6 +12,9 @@ FROM quay.io/centos7/s2i-core-centos7
 #  * $MYSQL_CHARSET (Optional) - Default character set
 #  * $MYSQL_COLLATION (Optional) - Default collation
 
+ENV ENV='/etc/environment' \
+    BASH_ENV='/etc/environment'
+
 ENV MYSQL_VERSION=10.3 \
     APP_DATA=/opt/app-root/src \
     HOME=/var/lib/mysql \
