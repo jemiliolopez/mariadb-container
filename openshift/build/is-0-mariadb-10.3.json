@@ -40,6 +40,12 @@
             "description": "The tagged version of the source repository to use.",
             "v# alue": "main",
             "required": true
+        },
+        {
+            "name": "SSH_PRIVATE_KEY",
+            "description": "Path dónde se encuentra la clave privada ssh.",
+            "value": "/home/emilio/.ssh/id_rsa",
+            "required": true
         }
     ],
     "objects": [
@@ -56,7 +62,7 @@
                 }
             },
             "type": "kubernetes.io/ssh-auth",
-            "data": {
+            "stringData": {
                 "ssh-privatekey": "${SSH_PRIVATE_KEY}"
             }
         },
