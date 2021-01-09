@@ -130,7 +130,7 @@
           "build": "${APP_NAME}"
         }
       },
-      "stringData": {
+      "data": {
         "mysql.user": "gente",
         "mysql.database": "puedeser",
       }
