@@ -30,6 +30,12 @@
             "required": true
         },
         {
+            "name": "SSH_GITHUB",
+            "description": "Servicio de mysql.",
+            "value": "github-secret-jemiliolopez",
+            "required": true
+        },
+        {
             "name": "SOURCE_REPOSITORY_MYSQL_URL",
             "description": "The URL of the quickstart Git repository.",
             "value": "git@github.com:jemiliolopez/mariadb-container.git",
@@ -49,23 +55,6 @@
         }
     ],
     "objects": [
-        {
-            "kind": "Secret",
-            "apiVersion": "v1",
-            "metadata": {
-                "name": "ssh-github",
-                "namespace": "${PROJECT_NAME}",
-                "labels": {
-                    "app": "${APP_NAME}",
-                    "app-service": "${APP_NAME}",
-                    "build": "${APP_NAME}"
-                }
-            },
-            "type": "kubernetes.io/ssh-auth",
-            "data": {
-                "ssh-privatekey": "${SSH_PRIVATE_KEY}"
-            }
-        },
         {
             "kind": "Secret",
             "apiVersion": "v1",
@@ -147,7 +136,7 @@
                 "runPolicy": "Serial",
                 "source": {
                     "sourceSecret": {
-                        "name": "ssh-github"
+                        "name": "${SSH_GITHUB}"
                     },
                     "type": "Git",
                     "git": {
