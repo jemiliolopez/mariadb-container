@@ -22,6 +22,11 @@
             "name": "APP_NAME",
             "description": "Nombre de la aplicación.",
             "value": "is-wp"
+        },
+        {
+            "name": "DOCKER_REGISTER",
+            "description": "The password for the database user.",
+            "value": "docker-registry.default.svc:5000"
         }
     ],
     "objects": [
