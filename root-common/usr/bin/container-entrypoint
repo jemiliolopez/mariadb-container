@@ -4,4 +4,7 @@ export MY_PRUEBA=${PRUEBA}
 
 PRUEBA=''
 
+export ENV=/etc/environment
+
+
 exec "$@"
