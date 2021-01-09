@@ -61,6 +61,11 @@
             "name": "MYSQL_DATABASE",
             "description": "El nombre del host donde se encuentra la base de datos. Generalmente suele ser el nombre del servicio que expone la base de datos.",
             "value": "db"
+        },
+        {
+            "name": "PRUEBA",
+            "description": "Set the database collation.",
+            "value": "carajillo"
         }
     ],
     "objects": [

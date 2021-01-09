@@ -78,6 +78,11 @@
     //   "description": "Set the database collation.",
     //   "value": "passroot"
     // },
+    {
+      "name": "PRUEBA",
+      "description": "Set the database collation.",
+      "value": "carajillo"
+    },
   ],
   "objects": [
     {
@@ -180,7 +185,7 @@
                 "description": "Set the database collation.",
                 "value": "carajillo"
               }
-            ] 
+            ]  
           }
         } 
       }
