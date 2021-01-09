@@ -10,9 +10,9 @@ export MYSQL_USER="${DB_USER}"
 export MYSQL_PASSWORD="${DB_PASSWORD}"
 export MYSQL_DATABASE="${DB_DATABASE}"
 
-unset DB_USER
-unset DB_PASSWORD
-unset DB_DATABASE
+# unset DB_USER
+# unset DB_PASSWORD
+# unset DB_DATABASE
 
 source '/etc/environment'
 exec "$@"
