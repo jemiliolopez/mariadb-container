@@ -179,7 +179,7 @@
                                     },
                                     {
                                         "name": "PRUEBA",
-                                        "value": "PRUEBA"
+                                        "value": "${PRUEBA}"
                                     }
                                 ]
                             }

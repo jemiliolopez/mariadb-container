@@ -37,7 +37,7 @@
     // }, 
     // {
     //   "name": "SSH_GITHUB",
-    //   "description": "Servicio de mysql.",
+    //   "description": "Servicio de mysql.", 
     //   "value": "github-secret-jemiliolopez",
     //   "required": true
     // },
@@ -237,7 +237,7 @@
                                 // },
                                 {
                                   "name": "PRUEBA",
-                                  "value": "PRUEBA"
+                                  "value": "${PRUEBA}"
                                 },
                                 // {
                                 //   "name": "BASH_ENV",

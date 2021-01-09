@@ -183,7 +183,7 @@
               {
                 "name": "PRUEBA",
                 "description": "Set the database collation.",
-                "value": "carajillo"
+                "value": "${PRUEBA}"
               }
             ]  
           }
