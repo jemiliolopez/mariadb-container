@@ -45,8 +45,8 @@
     {
       "name": "SOURCE_REPOSITORY_MYSQL_TAG",
       "description": "The tagged version of the source repository to use.",
-      "value": "main",
-      "required": true
+      "v# alue": "main",
+      "required": true 
     },
     // {
     //   "name": "DB_USER",

@@ -38,7 +38,7 @@
         {
             "name": "SOURCE_REPOSITORY_MYSQL_TAG",
             "description": "The tagged version of the source repository to use.",
-            "value": "main",
+            "v# alue": "main",
             "required": true
         }
     ],

@@ -77,26 +77,26 @@
     //   "description": "Set the database collation.",
     //   "value": "passuser"
     // },
-    {
-      "name": "MYSQL_DATABASE",
-      "description": "El nombre del host donde se encuentra la base de datos. Generalmente suele ser el nombre del servicio que expone la base de datos.",
-      "value": "db"
-    },
-    {
-      "name": "MYSQL_ROOT_PASSWORD",
-      "description": "Set the database collation.",
-      "value": ""
-    },
-    {
-      "name": "ROOT_PASSWORD",
-      "description": "Set the database collation.",
-      "value": "passroot"
-    },
-    {
-      "name": "PRUEBA",
-      "description": "Set the database collation.",
-      "value": "carajillo"
-    }
+    // {
+    //   "name": "MYSQL_DATABASE",
+    //   "description": "El nombre del host donde se encuentra la base de datos. Generalmente suele ser el nombre del servicio que expone la base de datos.",
+    //   "value": "db"
+    // },
+    // {
+    //   "name": "MYSQL_ROOT_PASSWORD",
+    //   "description": "Set the database collation.",
+    //   "value": ""
+    // },
+    // {
+    //   "name": "ROOT_PASSWORD",
+    //   "description": "Set the database collation.",
+    //   "value": "passroot"
+    // },
+    // {
+    //   "name": "PRUEBA",
+    //   "description": "Set the database collation.",
+    //   "value": "carajillo"
+    // }
     
   ],
    "objects": [
