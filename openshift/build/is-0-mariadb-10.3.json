@@ -30,12 +30,6 @@
             "required": true
         },
         {
-            "name": "SSH_GITHUB",
-            "description": "Servicio de mysql.",
-            "value": "github-secret-jemiliolopez",
-            "required": true
-        },
-        {
             "name": "SOURCE_REPOSITORY_MYSQL_URL",
             "description": "The URL of the quickstart Git repository.",
             "value": "git@github.com:jemiliolopez/mariadb-container.git",
@@ -46,24 +40,44 @@
             "description": "The tagged version of the source repository to use.",
             "value": "main",
             "required": true
-        },
-        {
-            "name": "DB_USER",
-            "description": "El nombre del host donde se encuentra la base de datos. Generalmente suele ser el nombre del servicio que expone la base de datos.",
-            "value": "user"
-        },
-        {
-            "name": "DB_PASSWORD",
-            "description": "Set the database collation.",
-            "value": "passuser"
-        },
-        {
-            "name": "DB_DATABASE",
-            "description": "El nombre del host donde se encuentra la base de datos. Generalmente suele ser el nombre del servicio que expone la base de datos.",
-            "value": "db"
         }
     ],
     "objects": [
+        {
+            "kind": "Secret",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "${APP_NAME}-secret",
+                "namespace": "${PROJECT_NAME}",
+                "labels": {
+                    "app": "${APP_NAME}",
+                    "app-service": "${APP_NAME}",
+                    "build": "${APP_NAME}"
+                }
+            },
+            "type": "Opaque",
+            "stringData": {
+                "mysql.password": "amigo",
+                "mysql.root.password": "enemigo"
+            }
+        },
+        {
+            "kind": "ConfigMap",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "${APP_NAME}-cfmap",
+                "namespace": "${PROJECT_NAME}",
+                "labels": {
+                    "app": "${APP_NAME}",
+                    "app-service": "${APP_NAME}",
+                    "build": "${APP_NAME}"
+                }
+            },
+            "data": {
+                "mysql.user": "gente",
+                "mysql.database": "puedeser"
+            }
+        },
         {
             "kind": "ImageStream",
             "apiVersion": "v1",
@@ -126,7 +140,35 @@
                             "kind": "DockerImage",
                             "name": "quay.io/centos7/s2i-core-centos7"
                         },
-                        "env": []
+                        "env": [
+                            {
+                                "name": "MYSQL_USER",
+                                "valueFrom": {
+                                    "configMapKeyRef": {
+                                        "name": "${APP_NAME}-cfmap",
+                                        "key": "mysql.user"
+                                    }
+                                }
+                            },
+                            {
+                                "name": "MYSQL_PASSWORD",
+                                "valueFrom": {
+                                    "secretKeyRef": {
+                                        "name": "${APP_NAME}-secret",
+                                        "key": "mysql.password"
+                                    }
+                                }
+                            },
+                            {
+                                "name": "MYSQL_DATABASE",
+                                "valueFrom": {
+                                    "configMapKeyRef": {
+                                        "name": "${APP_NAME}-cfmap",
+                                        "key": "mysql.database"
+                                    }
+                                }
+                            }
+                        ]
                     }
                 }
             }
