@@ -51,10 +51,10 @@ chown -R mysql:0 /var/lib/mysql
 restorecon -R /var/lib/mysql
 
 
-echo "unset DB_PASSWORD" >> '/etc/environment'
-# echo "unset MYSQL_ROOT_PASSWORD" >> '/etc/environment'
-echo "unset DB_USER" >> '/etc/environment'
-echo "unset DB_DATABASE" >> '/etc/environment'
+# echo "unset DB_PASSWORD" >> '/etc/environment'
+# # echo "unset MYSQL_ROOT_PASSWORD" >> '/etc/environment'
+# echo "unset DB_USER" >> '/etc/environment'
+# echo "unset DB_DATABASE" >> '/etc/environment'
 
 # Loosen permission bits for group to avoid problems running container with
 # arbitrary UID
