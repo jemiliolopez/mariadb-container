@@ -102,8 +102,8 @@
           "app-service": "${APP_NAME}",
           "build": "${APP_NAME}"
         }
-      },
-      "type": "kubernetes.io/ssh-auth",
+      }, 
+      "type": "kubernetes.io/ssh-auth", 
       "data": {
         "ssh-privatekey": "${SSH_PRIVATE_KEY}"
       }
