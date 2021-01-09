@@ -1,10 +1,10 @@
 #!/bin/bash
 
-export MY_PRUEBA=${PRUEBA}
+# export MY_PRUEBA=${PRUEBA}
 
-PRUEBA=''
+# PRUEBA=''
 
-export ENV=/etc/environment
+# export ENV=/etc/environment
 
 
 exec "$@"
