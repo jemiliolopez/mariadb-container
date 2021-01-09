@@ -2,7 +2,7 @@
 
 entorno() {
     export PROJECT_NAME="imagenes-wordpress"
-    export APP_NAME="is-0-mariadb-10-3"
+    export APP_NAME="is-2-mariadb-10-3"
     export STRATEGY_TYPE="Docker"
     export SSH_GITHUB="github-secret-jemiliolopez"
     export SOURCE_REPOSITORY_MYSQL_URL="git@github.com:jemiliolopez/mariadb-container.git"

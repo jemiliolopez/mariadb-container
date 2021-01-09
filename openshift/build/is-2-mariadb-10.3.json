@@ -121,10 +121,10 @@
                 "strategy": {
                     "type": "${STRATEGY_TYPE}",
                     "dockerStrategy": {
-                        "dockerfilePath": "10.3/Dockerfile",
+                        "dockerfilePath": "openshift/Final_Docker/Dockerfile",
                         "from": {
                             "kind": "DockerImage",
-                            "name": "quay.io/centos7/s2i-core-centos7"
+                            "name": "docker-registry.default.svc:5000/imagenes-wordpress/is-1-mariadb-10-3"
                         },
                         "env": [
                             {

@@ -23,10 +23,9 @@
 
 # oc apply -f wp-builds/PVs/os-nfs-wpp-pv08.json -f wp-builds/PVs/os-nfs-masterp-pv07.json -f wp-builds/PVs/os-nfs-slave1-pv06.json -f wp-builds/PVs/os-nfs-slave2-pv05.json && sleep 10 && \
 
-. ./Env-is-0-mariadb-10.3.sh
+. ./Env-is-2-mariadb-10.3.sh
 
-
-oc process -f ./../build/is-0-mariadb-10.3.json \
+oc process -f ./../build/is-2-mariadb-10.3.json \
    -p PROJECT_NAME="${PROJECT_NAME}" \
    -p APP_NAME="${APP_NAME}" \
    -p STRATEGY_TYPE="${STRATEGY_TYPE}" \
@@ -36,7 +35,7 @@ oc process -f ./../build/is-0-mariadb-10.3.json \
    -p MYSQL_USER="MYSQL_USER" \
    -p MYSQL_PASSWORD="MYSQL_PASSWORD" \
    -p MYSQL_DATABASE="MYSQL_DATABASE" \
-    | oc delete -f -
+    | oc apply -f -
 
 
    
