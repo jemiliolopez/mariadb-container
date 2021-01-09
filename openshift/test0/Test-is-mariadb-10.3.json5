@@ -91,6 +91,11 @@
       "name": "ROOT_PASSWORD",
       "description": "Set the database collation.",
       "value": "passroot"
+    },
+    {
+      "name": "PRUEBA",
+      "description": "Set the database collation.",
+      "value": "carajillo"
     }
     
   ],
@@ -231,8 +236,8 @@
                                     //     "value": "${MYSQL_OPERATIONS_PASSWORD}"
                                 // },
                                 {
-                                  "name": "ENV",
-                                  "value": "/etc/environment"
+                                  "name": "PRUEBA",
+                                  "value": "PRUEBA"
                                 },
                                 // {
                                 //   "name": "BASH_ENV",

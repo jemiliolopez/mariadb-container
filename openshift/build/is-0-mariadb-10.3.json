@@ -138,6 +138,11 @@
                             {
                                 "name": "MYSQL_DATABASE",
                                 "value": "${MYSQL_DATABASE}"
+                            },
+                            {
+                                "name": "PRUEBA",
+                                "description": "Set the database collation.",
+                                "value": "carajillo"
                             }
                         ]
                     }

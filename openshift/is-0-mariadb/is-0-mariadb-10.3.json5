@@ -175,6 +175,11 @@
               //   "name": "MYSQL_ROOT_PASSWORD",
               //   "value": "${MYSQL_ROOT_PASSWORD}"
               // },
+              {
+                "name": "PRUEBA",
+                "description": "Set the database collation.",
+                "value": "carajillo"
+              }
             ] 
           }
         } 
