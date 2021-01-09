@@ -6,5 +6,5 @@
 
 # export ENV=/etc/environment
 
-# source '/etc/environment'
+source '/etc/environment'
 exec "$@"
