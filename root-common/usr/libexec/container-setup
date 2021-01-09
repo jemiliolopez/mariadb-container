@@ -101,8 +101,8 @@ restorecon -R /var/lib/mysql
 
 # chmod 0444 /var/lib/mysql/.bashrc
 
-chown mysql:root /etc/opt/rh/rh-mariadb103/my.cnf
-chmod 0600 /etc/opt/rh/rh-mariadb103/my.cnf
+# chown mysql:root /etc/opt/rh/rh-mariadb103/my.cnf
+# chmod 0600 /etc/opt/rh/rh-mariadb103/my.cnf
 
 
 
