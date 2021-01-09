@@ -176,10 +176,6 @@
                                                 "key": "mysql.root.password"
                                             }
                                         }
-                                    },
-                                    {
-                                        "name": "PRUEBA",
-                                        "value": "${PRUEBA}"
                                     }
                                 ]
                             }

@@ -235,10 +235,10 @@
                                     //     "name": "MYSQL_OPERATIONS_PASSWORD",
                                     //     "value": "${MYSQL_OPERATIONS_PASSWORD}"
                                 // },
-                                {
-                                  "name": "PRUEBA",
-                                  "value": "${PRUEBA}"
-                                },
+                                // {
+                                //   "name": "PRUEBA",
+                                //   "value": "${PRUEBA}"
+                                // },
                                 // {
                                 //   "name": "BASH_ENV",
                                 //   "value": "/var/lib/mysql/.bashrc"
