@@ -2,6 +2,6 @@
 
 export MY_PRUEBA=${PRUEBA}
 
-unset PRUEBA
+PRUEBA=''
 
 exec "$@"
