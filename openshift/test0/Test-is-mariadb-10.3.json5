@@ -53,20 +53,20 @@
     //   "value": "master",
     //   "required": true
     // },
-    { "name": "DOCKER_REGISTER",
-      "description": "The password for the database user.",
-      "value": "docker-registry.default.svc:5000"
-    },
-    {
-      "name": "MYSQL_USER",
-      "description": "El nombre del host donde se encuentra la base de datos. Generalmente suele ser el nombre del servicio que expone la base de datos.",
-      "value": "user"
-    },
-    {
-      "name": "MYSQL_PASSWORD",
-      "description": "Set the database collation.",
-      "value": "passuser" 
-    },
+    // { "name": "DOCKER_REGISTER",
+    //   "description": "The password for the database user.",
+    //   "value": "docker-registry.default.svc:5000"
+    // },
+    // {
+    //   "name": "MYSQL_USER",
+    //   "description": "El nombre del host donde se encuentra la base de datos. Generalmente suele ser el nombre del servicio que expone la base de datos.",
+    //   "value": "user"
+    // },
+    // {
+    //   "name": "MYSQL_PASSWORD",
+    //   "description": "Set the database collation.",
+    //   "value": "passuser" 
+    // },
     // {
     //   "name": "MYSQL_OPERATIONS_USER",
     //   "description": "El nombre del host donde se encuentra la base de datos. Generalmente suele ser el nombre del servicio que expone la base de datos.",
