@@ -140,44 +140,7 @@
                                         "memory": "512Mi"
                                     }
                                 },
-                                "env": [
-                                    {
-                                        "name": "MYSQL_USER",
-                                        "valueFrom": {
-                                            "configMapKeyRef": {
-                                                "name": "${APP_NAME}-cfmap",
-                                                "key": "mysql.user"
-                                            }
-                                        }
-                                    },
-                                    {
-                                        "name": "MYSQL_PASSWORD",
-                                        "valueFrom": {
-                                            "secretKeyRef": {
-                                                "name": "${APP_NAME}-secret",
-                                                "key": "mysql.password"
-                                            }
-                                        }
-                                    },
-                                    {
-                                        "name": "MYSQL_DATABASE",
-                                        "valueFrom": {
-                                            "configMapKeyRef": {
-                                                "name": "${APP_NAME}-cfmap",
-                                                "key": "mysql.database"
-                                            }
-                                        }
-                                    },
-                                    {
-                                        "name": "MYSQL_ROOT_PASSWORD",
-                                        "valueFrom": {
-                                            "secretKeyRef": {
-                                                "name": "${APP_NAME}-secret",
-                                                "key": "mysql.root.password"
-                                            }
-                                        }
-                                    }
-                                ]
+                                "env": []
                             }
                         ],
                         "dnsPolicy": "ClusterFirst",
