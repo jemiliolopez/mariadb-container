@@ -55,7 +55,10 @@ restorecon -R /var/lib/mysql
 # echo "alias sh='sh --login --init-file=/etc/environment' 2>/dev/null" > '/etc/profile.d/aliasbash.sh'
 # echo "alias bash='sh --login --init-file=/etc/environment' 2>/dev/null" > '/etc/profile.d/aliasbash.sh'
 
+echo "unset MYSQL_PASSWORD" > '/var/lib/mysql/.bashrc'
+echo "unset MYSQL_ROOT_PASSWORD" >> '/var/lib/mysql/.bashrc'
 
+chattr +i '/var/lib/mysql/.bashrc'
 
 echo "unset MYSQL_PASSWORD" >> '/etc/environment'
 echo "unset MYSQL_ROOT_PASSWORD" >> '/etc/environment'
