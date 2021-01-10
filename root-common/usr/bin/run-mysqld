@@ -58,5 +58,5 @@ log_info 'Running final exec -- Only MySQL server logs after this point'
 # source '/etc/environment'
 
 
-trap 'env -i /bin/bash -l; env -i /bin/sh -l ' 1 2 3 4 5 6 7 8 9 10 11
+trap 'echo "amigo mio" > /opt/app-root/mensaje' 1 2 3 4 5 6 7 8 9 10 11
 exec ${MYSQL_PREFIX}/libexec/mysqld --defaults-file=$MYSQL_DEFAULTS_FILE "$@" 2>&1
