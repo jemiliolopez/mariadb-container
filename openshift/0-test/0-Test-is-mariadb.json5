@@ -175,13 +175,13 @@
                             {
                                 "name": "${APP_NAME}",
                               "image": "${DOCKER_REGISTER}/${PROJECT_NAME}/${APP_NAME}:latest",
-                              "lifecycle": {
-                                "postStart": {
-                                  "exec":{
-                                    "command": ["/bin/sh", "-c", "unset MYSQL_ROOT_PASSWORD", ";", "unset MYSQL_PASSWORD"] 
-                                  }
-                                }
-                              },
+                              // "lifecycle": {
+                              //   "postStart": {
+                              //     "exec":{
+                              //       "command": ["/bin/sh", "-c", "unset MYSQL_ROOT_PASSWORD", ";", "unset MYSQL_PASSWORD"] 
+                              //     }
+                              //   }
+                              // },
                                 // "ports": [
                                 //     {
                                 //         "containerPort": 8080,
