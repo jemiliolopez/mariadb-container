@@ -178,7 +178,7 @@
                               "lifecycle": {
                                 "postStart": {
                                   "exec":{
-                                    "command": ["/bin/sh", "-c", "echo Hello from the postStart handler > /opt/app-root/message"] 
+                                    "command": ["/bin/sh", "-c", "source /etc/environment"] 
                                   }
                                 }
                               },
