@@ -56,7 +56,7 @@ restorecon -R /var/lib/mysql
 # echo "unset MYSQL_USER" >> '/etc/environment'
 # echo "unset MYSQL_DATABASE" >> '/etc/environment'
 
- echo "unset MYSQL_PASSWORD" >> '/etc/bash.bashrc'
+#  echo "unset MYSQL_PASSWORD" >> '/etc/bash.bashrc'
 
 # Loosen permission bits for group to avoid problems running container with
 # arbitrary UID
