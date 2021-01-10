@@ -1,4 +1,4 @@
-#!/usr/bin/env -u MYSQL_ROOT_PASSWORD bash
+#!/bin/bash
 
 export_vars=$(cgroup-limits); export $export_vars
 source ${CONTAINER_SCRIPTS_PATH}/common.sh
