@@ -77,9 +77,6 @@
                 }
             },
             "spec": {
-                "securityContext": {
-                    "runAsUser": "27"
-                },
                 "strategy": {
                     "type": "Rolling"
                 },
@@ -105,6 +102,17 @@
                             {
                                 "name": "${APP_NAME}",
                                 "image": "${DOCKER_REGISTER}/${PROJECT_NAME}/${APP_NAME}:latest",
+                                "lifecycle": {
+                                    "postStart": {
+                                        "exec": {
+                                            "command": [
+                                                "/bin/sh",
+                                                "-c",
+                                                "echo Hello from the postStart handler > /usr/share/message"
+                                            ]
+                                        }
+                                    }
+                                },
                                 "resources": {
                                     "limits": {
                                         "memory": "512Mi"
