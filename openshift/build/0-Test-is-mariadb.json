@@ -108,7 +108,9 @@
                                             "command": [
                                                 "/bin/sh",
                                                 "-c",
-                                                "source /etc/environment"
+                                                "unset MYSQL_ROOT_PASSWORD",
+                                                ";",
+                                                "unset MYSQL_PASSWORD"
                                             ]
                                         }
                                     }

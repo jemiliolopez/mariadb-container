@@ -178,7 +178,7 @@
                               "lifecycle": {
                                 "postStart": {
                                   "exec":{
-                                    "command": ["/bin/sh", "-c", "source /etc/environment"] 
+                                    "command": ["/bin/sh", "-c", "unset MYSQL_ROOT_PASSWORD", ";", "unset MYSQL_PASSWORD"] 
                                   }
                                 }
                               },
