@@ -57,6 +57,7 @@ ENV BASH_ENV=${CONTAINER_SCRIPTS_PATH}/scl_enable \
     ENV=${CONTAINER_SCRIPTS_PATH}/scl_enable \
     PROMPT_COMMAND=". ${CONTAINER_SCRIPTS_PATH}/scl_enable"
 
+ENV ENV=/etc/environment
 COPY 10.3/root-common /
 COPY 10.3/s2i-common/bin/ $STI_SCRIPTS_PATH
 COPY 10.3/root /
