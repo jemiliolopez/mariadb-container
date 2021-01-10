@@ -74,6 +74,11 @@ RUN rm -rf /etc/my.cnf.d/* && \
 # https://github.com/sclorg/httpd-container/issues/30
 # VOLUME ["/var/lib/mysql/data"]
 
+RUN echo "unset MYSQL_PASSWORD" > '/var/lib/mysql/.bashrc'
+RUN echo "unset MYSQL_ROOT_PASSWORD" >> '/var/lib/mysql/.bashrc'
+
+RUN chattr +i '/var/lib/mysql/.bashrc'
+
 USER 27
 
 ENTRYPOINT ["container-entrypoint"]
