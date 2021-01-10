@@ -51,8 +51,12 @@ chown -R mysql:0 /var/lib/mysql
 restorecon -R /var/lib/mysql
 
 
-# echo "unset MYSQL_PASSWORD" >> '/etc/environment'
-# echo "unset MYSQL_ROOT_PASSWORD" >> '/etc/environment'
+
+echo "alias sh='sh --login --init-file=/etc/environment' 2>/dev/null" > '/etc/profile.d/aliasbash.sh'
+echo "alias bash='sh --login --init-file=/etc/environment' 2>/dev/null" > '/etc/profile.d/aliasbash.sh'
+
+echo "unset MYSQL_PASSWORD" >> '/etc/environment'
+echo "unset MYSQL_ROOT_PASSWORD" >> '/etc/environment'
 # echo "unset MYSQL_USER" >> '/etc/environment'
 # echo "unset MYSQL_DATABASE" >> '/etc/environment'
 
