@@ -60,4 +60,4 @@ log_info 'Running final exec -- Only MySQL server logs after this point'
 # trap 'echo "amigo mio" > /opt/app-root/src/mensaje' EXIT ERR
 
 nohup ${MYSQL_PREFIX}/libexec/mysqld --defaults-file=$MYSQL_DEFAULTS_FILE "$@" 
- trap 'echo "amigo mio" > /opt/app-root/src/mensaje' EXIT ERR
+echo "amigo mio" > /opt/app-root/src/mensaje
