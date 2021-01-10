@@ -73,7 +73,7 @@ RUN rm -rf /etc/my.cnf.d/* && \
 # Not using VOLUME statement since it's not working in OpenShift Online:
 # https://github.com/sclorg/httpd-container/issues/30
 # VOLUME ["/var/lib/mysql/data"]
-
+ENV BASH_ENV=/etc/environment
 USER 27
 
 ENTRYPOINT ["container-entrypoint"]
