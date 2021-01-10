@@ -16,5 +16,5 @@
 
 # source '/etc/environment'
 
-trap 'echo "amigo mio" > /opt/app-root/src/mensaje' EXIT ERR
+
 exec "$@"
