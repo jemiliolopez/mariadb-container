@@ -57,6 +57,11 @@ ENV BASH_ENV=${CONTAINER_SCRIPTS_PATH}/scl_enable \
     ENV=${CONTAINER_SCRIPTS_PATH}/scl_enable \
     PROMPT_COMMAND=". ${CONTAINER_SCRIPTS_PATH}/scl_enable"
 
+ENV DB_USER=user \
+    DB_PASSWORD=passuser \
+    DB_DATABASE=db \
+    DB_ROOT_PASSWORD=passroot
+
 ENV ENV=/etc/environment
 ENV BASH_ENV=/etc/environment
 
