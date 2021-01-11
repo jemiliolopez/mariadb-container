@@ -297,12 +297,3 @@ function write_mysql_upgrade_info_file() {
   fi
 }
 
-# Esta función nos permite cambiar el nombre de las variables (truco) para que no aparezcan luego en las variables de estado
-
-workround_environment() {
-    export MYSQL_USER="${DB_USER}"
-    export MYSQL_DATABASE="${DB_DATABASE}"
-    export MYSQL_PASSWORD="${DB_PASSWORD}"
-    export MYSQL_ROOT_PASSWORD="${DB_ROOT_PASSWORD}"
-    export MYSQL_PWD="${DB_ROOT_PASSWORD}"
-}

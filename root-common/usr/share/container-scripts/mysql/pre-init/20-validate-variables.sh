@@ -79,6 +79,5 @@ function validate_variables() {
 
 
 if ! [ -v MYSQL_RUNNING_AS_SLAVE ] ; then
-    workround_environment
-  validate_variables
+    validate_variables
 fi
