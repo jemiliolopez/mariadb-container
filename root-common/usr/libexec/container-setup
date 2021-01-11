@@ -67,8 +67,8 @@ restorecon -R /var/lib/mysql
 
 echo "unset DB_PASSWORD" >> '/etc/bashrc'
 echo "unset DB_ROOT_PASSWORD" >> '/etc/bashrc'
-# echo "unset MYSQL_USER" >> '/etc/environment'
-# echo "unset MYSQL_DATABASE" >> '/etc/environment'
+echo "unset DB_PASSWORD" >> '/etc/environment'
+echo "unset DB_ROOT_PASSWORD" >> '/etc/environment'
 
 #  echo "unset MYSQL_PASSWORD" >> '/etc/bash.bashrc'
 
