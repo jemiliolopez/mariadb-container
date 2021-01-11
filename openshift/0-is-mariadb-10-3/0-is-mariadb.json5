@@ -232,7 +232,7 @@
                                     }
                                   }
                                 },
-              {
+              { 
                 "name": "DB_ROOT_PASSWORD",
                 "valueFrom": {
                   "secretKeyRef": {

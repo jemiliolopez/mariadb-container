@@ -214,7 +214,7 @@
                                       "name": "${APP_NAME}-secret",
                                       "key": "mysql.password"
                                     }
-                                  }
+                                  } 
                                 },
                                 {
                                   "name": "DB_DATABASE",
