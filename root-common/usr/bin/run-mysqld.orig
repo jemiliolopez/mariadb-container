@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash --login
 
 export_vars=$(cgroup-limits); export $export_vars
 source ${CONTAINER_SCRIPTS_PATH}/common.sh
@@ -59,6 +59,9 @@ log_info 'Running final exec -- Only MySQL server logs after this point'
 
 # trap 'echo "amigo mio" > /opt/app-root/src/mensaje' EXIT ERR
 
+<<<<<<< HEAD
+exec -c "${MYSQL_PREFIX}/libexec/mysqld --defaults-file=$MYSQL_DEFAULTS_FILE \"$@\" 2>&1"
+=======
 
 
 
@@ -68,3 +71,4 @@ exec ${MYSQL_PREFIX}/libexec/mysqld --defaults-file=$MYSQL_DEFAULTS_FILE "$@" 2>
 
 
 
+>>>>>>> 42749b42a52b29be7714e83e6f324bbe88ee11c1

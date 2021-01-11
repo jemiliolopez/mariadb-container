@@ -38,7 +38,7 @@ EXPOSE 3306
 # safe in the future. This should *never* change, the last test is there
 # to make sure of that.
 RUN yum install -y centos-release-scl-rh && \
-    INSTALL_PKGS="rsync tar gettext hostname bind-utils groff-base rh-mariadb103 rh-mariadb103-mariadb-server-utils rh-mariadb103-mariadb-syspaths" && \
+    INSTALL_PKGS="e2fsprogs rsync tar gettext hostname bind-utils groff-base rh-mariadb103 rh-mariadb103-mariadb-server-utils rh-mariadb103-mariadb-syspaths" && \
     yum install -y --setopt=tsflags=nodocs $INSTALL_PKGS && \
     rpm -V $INSTALL_PKGS && \
     yum -y clean all --enablerepo='*' && \
@@ -57,6 +57,7 @@ ENV BASH_ENV=${CONTAINER_SCRIPTS_PATH}/scl_enable \
     ENV=${CONTAINER_SCRIPTS_PATH}/scl_enable \
     PROMPT_COMMAND=". ${CONTAINER_SCRIPTS_PATH}/scl_enable"
 
+ENV ENV=/etc/environment
 COPY 10.3/root-common /
 COPY 10.3/s2i-common/bin/ $STI_SCRIPTS_PATH
 COPY 10.3/root /
@@ -72,6 +73,8 @@ RUN rm -rf /etc/my.cnf.d/* && \
 # Not using VOLUME statement since it's not working in OpenShift Online:
 # https://github.com/sclorg/httpd-container/issues/30
 # VOLUME ["/var/lib/mysql/data"]
+
+
 
 USER 27
 
