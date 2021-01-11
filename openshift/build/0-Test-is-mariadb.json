@@ -102,19 +102,6 @@
                             {
                                 "name": "${APP_NAME}",
                                 "image": "${DOCKER_REGISTER}/${PROJECT_NAME}/${APP_NAME}:latest",
-                                "lifecycle": {
-                                    "postStart": {
-                                        "exec": {
-                                            "command": [
-                                                "/bin/sh",
-                                                "-c",
-                                                "unset MYSQL_ROOT_PASSWORD",
-                                                ";",
-                                                "unset MYSQL_PASSWORD"
-                                            ]
-                                        }
-                                    }
-                                },
                                 "resources": {
                                     "limits": {
                                         "memory": "512Mi"
@@ -122,7 +109,7 @@
                                 },
                                 "env": [
                                     {
-                                        "name": "MYSQL_USER",
+                                        "name": "DB_USER",
                                         "valueFrom": {
                                             "configMapKeyRef": {
                                                 "name": "${APP_NAME}-cfmap",
@@ -131,7 +118,7 @@
                                         }
                                     },
                                     {
-                                        "name": "MYSQL_PASSWORD",
+                                        "name": "DB_PASSWORD",
                                         "valueFrom": {
                                             "secretKeyRef": {
                                                 "name": "${APP_NAME}-secret",
@@ -140,7 +127,7 @@
                                         }
                                     },
                                     {
-                                        "name": "MYSQL_DATABASE",
+                                        "name": "DB_DATABASE",
                                         "valueFrom": {
                                             "configMapKeyRef": {
                                                 "name": "${APP_NAME}-cfmap",
@@ -149,7 +136,7 @@
                                         }
                                     },
                                     {
-                                        "name": "MYSQL_ROOT_PASSWORD",
+                                        "name": "DB_ROOT_PASSWORD",
                                         "valueFrom": {
                                             "secretKeyRef": {
                                                 "name": "${APP_NAME}-secret",

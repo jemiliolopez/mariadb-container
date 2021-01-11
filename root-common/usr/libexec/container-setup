@@ -1,5 +1,15 @@
 #!/bin/bash
 
+# Esta función nos permite cambiar el nombre de las variables (truco) para que no aparezcan luego en las variables de estado
+
+workround_environment() {
+    export MYSQL_USER="${DB_USER}"
+    export MYSQL_DATABASE="${DB_DATABASE}"
+    export MYSQL_PASSWORD="${DB_PASSWORD}"
+    export MYSQL_ROOT_PASSWORD="${DB_ROOT_PASSWORD}"
+    export MYSQL_PWD="${DB_ROOT_PASSWORD}"
+}
+
 # This function returns all config files that daemon uses and their path
 # includes /opt. It is used to get correct path to the config file.
 mysql_get_config_files_scl() {
@@ -51,17 +61,21 @@ chown -R mysql:0 /var/lib/mysql
 restorecon -R /var/lib/mysql
 
 
+workround_environment
+
+
+
 #echo "alias sh='sh --login --init-file=/etc/environment' 2>/dev/null" > '/etc/profile.d/aliasbash.sh'
 # echo "alias sh='sh --login --init-file=/etc/environment' 2>/dev/null" > '/etc/profile.d/aliasbash.sh'
 # echo "alias bash='sh --login --init-file=/etc/environment' 2>/dev/null" > '/etc/profile.d/aliasbash.sh'
 
-echo "unset MYSQL_PASSWORD" > '/var/lib/mysql/.bashrc'
-echo "unset MYSQL_ROOT_PASSWORD" >> '/var/lib/mysql/.bashrc'
+# echo "unset DB_PASSWORD" > '/var/lib/mysql/.bashrc'
+# echo "unset DBL_ROOT_PASSWORD" >> '/var/lib/mysql/.bashrc'
 
-chattr +i '/var/lib/mysql/.bashrc'
+# chattr +i '/var/lib/mysql/.bashrc'
 
-echo "unset MYSQL_PASSWORD" >> '/etc/environment'
-echo "unset MYSQL_ROOT_PASSWORD" >> '/etc/environment'
+echo "unset DB_PASSWORD" >> '/etc/environment'
+echo "unset DB_ROOT_PASSWORD" >> '/etc/environment'
 # echo "unset MYSQL_USER" >> '/etc/environment'
 # echo "unset MYSQL_DATABASE" >> '/etc/environment'
 
