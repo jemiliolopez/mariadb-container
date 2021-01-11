@@ -67,8 +67,7 @@ log_info 'Running final exec -- Only MySQL server logs after this point'
 
 
 
-
-/bin/bash --init-file /etc/bashrc -c "exec ${MYSQL_PREFIX}/libexec/mysqld --defaults-file=$MYSQL_DEFAULTS_FILE \"$@\" 2>&1" 
+exec /bin/sh -c "${MYSQL_PREFIX}/libexec/mysqld --defaults-file=$MYSQL_DEFAULTS_FILE $@ 2>&1" 
 
 
 
