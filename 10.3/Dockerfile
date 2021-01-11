@@ -63,7 +63,7 @@ ENV DB_USER=user \
     DB_ROOT_PASSWORD=passroot
 
 ENV ENV=/etc/environment
-ENV BASH_ENV=/etc/environment
+
 
 COPY 10.3/root-common /
 COPY 10.3/s2i-common/bin/ $STI_SCRIPTS_PATH
