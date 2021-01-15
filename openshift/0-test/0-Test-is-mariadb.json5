@@ -147,11 +147,6 @@
                 }
             },
        "spec": {
-         "serviceAccountName" : "todo-uid",
-         "securityContext": {
-           "runAsUser": "1001",
-           "runAsGroup": "0"
-         }, 
                 "strategy": {
                     "type": "Rolling"
                 },
@@ -172,7 +167,12 @@
                             "deployconfig": "${APP_NAME}"
                         }
                     }, 
-                    "spec": {
+                  "spec": {
+                    "serviceAccountName" : "todo-uid",
+                    "securityContext": {
+                      "runAsUser": "1001",
+                      "runAsGroup": "0"
+                    },
                         "containers": [
                             {
                                 "name": "${APP_NAME}",
