@@ -5,7 +5,7 @@
     "annotations": {
       "kubernetes.io/description": "My anyuid"
     },
-    "name": "my-anyuid",
+    "name": "my-anyuid"
   },
   "priority": 10,
   "allowHostDirVolumePlugin": false,
