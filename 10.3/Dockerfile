@@ -62,8 +62,7 @@ ENV DB_USER=user \
     DB_DATABASE=db \
     DB_ROOT_PASSWORD=passroot
 
-ENV ENV=/etc/environment \
-    BASH_ENV=
+ENV ENV=/etc/environment
 
 
 COPY 10.3/root-common /
