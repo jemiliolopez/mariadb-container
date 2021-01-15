@@ -79,7 +79,7 @@
             "spec": {
                 "serviceAccountName": "todo-uid",
                 "securityContext": {
-                    "runAsUser": "27"
+                    "runAsUser": "1001"
                 },
                 "strategy": {
                     "type": "Rolling"
