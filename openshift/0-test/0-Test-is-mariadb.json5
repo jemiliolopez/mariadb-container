@@ -178,9 +178,9 @@
                                 "name": "${APP_NAME}",
                               "image": "${DOCKER_REGISTER}/${PROJECT_NAME}/${APP_NAME}:latest",
                               "command": [
-                                "unset DB_PASSWORD"
+                                "DB_PASSWORD=''"
                               ],
-                              // "args": [
+                              // "args": [ 
                
                               // ],
                               // "lifecycle": {
