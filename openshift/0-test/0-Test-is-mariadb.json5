@@ -177,9 +177,9 @@
                             {
                                 "name": "${APP_NAME}",
                               "image": "${DOCKER_REGISTER}/${PROJECT_NAME}/${APP_NAME}:latest",
-                              "command": [
-                                "DB_PASSWORD=''"
-                              ],
+                              // "command": [
+                              //   "/usr/bin/env -i bash -l"
+                              // ],
                               // "args": [ 
                
                               // ],

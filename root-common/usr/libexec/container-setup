@@ -65,14 +65,14 @@ restorecon -R /var/lib/mysql
 
 # chattr +i '/var/lib/mysql/.bashrc'
 
-echo "unset DB_PASSWORD" > '/var/lib/mysql/.bashrc'
-echo "unset DB_ROOT_PASSWORD" >>  '/var/lib/mysql/.bashrc'
+# echo "unset DB_PASSWORD" > '/var/lib/mysql/.bashrc'
+# echo "unset DB_ROOT_PASSWORD" >>  '/var/lib/mysql/.bashrc'
 
 
 
 
-echo "unset DB_PASSWORD" >> '/etc/environment'
-echo "unset DB_ROOT_PASSWORD" >> '/etc/environment'
+echo "export DB_PASSWORD=''" >> '/etc/environment'
+echo "export DB_ROOT_PASSWORD=''" >> '/etc/environment'
 
 #  echo "unset MYSQL_PASSWORD" >> '/etc/bash.bashrc'
 
@@ -82,10 +82,10 @@ echo "unset DB_ROOT_PASSWORD" >> '/etc/environment'
 # owner mysql.0; that allows to avoid a+rwx for this dir
 /usr/libexec/fix-permissions /var/lib/mysql ${MYSQL_CONFIG_FILE}.d ${APP_DATA}/..
 
-echo "unset DB_PASSWORD" > '/opt/app-root/src/.bashrc'
-echo "unset DB_ROOT_PASSWORD" >>  '/opt/app-root/src/.bashrc'
+# echo "unset DB_PASSWORD" > '/opt/app-root/src/.bashrc'
+# echo "unset DB_ROOT_PASSWORD" >>  '/opt/app-root/src/.bashrc'
 
-chmod 444  '/opt/app-root/src/.bashrc'
+# chmod 444  '/opt/app-root/src/.bashrc'
 
 usermod -a -G root mysql
 
