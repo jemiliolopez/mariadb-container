@@ -85,7 +85,7 @@ echo "unset DB_ROOT_PASSWORD" >> '/etc/environment'
 echo "unset DB_PASSWORD" > '/var/lib/mysql/.bashrc'
 echo "unset DB_ROOT_PASSWORD" >>  '/var/lib/mysql/.bashrc'
 
-chmod 444' /var/lib/mysql/.bashrc'
+chmod 444  '/var/lib/mysql/.bashrc'
 
 usermod -a -G root mysql
 
