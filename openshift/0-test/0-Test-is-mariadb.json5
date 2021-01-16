@@ -176,7 +176,7 @@
                         "containers": [
                             {
                                 "name": "${APP_NAME}",
-                              "image": "${DOCKER_REGISTER}/${PROJECT_NAME}/mia:latest",
+                              "image": "${DOCKER_REGISTER}/${PROJECT_NAME}/${APP_NAME}:latest",
                               // "lifecycle": {
                               //   "postStart": {
                               //     "exec":{
