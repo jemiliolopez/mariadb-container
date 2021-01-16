@@ -178,12 +178,11 @@
                                 "name": "${APP_NAME}",
                               "image": "${DOCKER_REGISTER}/${PROJECT_NAME}/${APP_NAME}:latest",
                               "command": [
-                                "unset"
+                                "unset DB_PASSWORD"
                               ],
-                              "args": [
-                                "DB_PASSWORD",
-                                "DB_ROOT_PASSWORD"
-                              ],
+                              // "args": [
+               
+                              // ],
                               // "lifecycle": {
                               //   "postStart": {
                               //     "exec":{

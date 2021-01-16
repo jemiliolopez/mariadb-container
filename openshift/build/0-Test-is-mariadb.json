@@ -108,11 +108,7 @@
                                 "name": "${APP_NAME}",
                                 "image": "${DOCKER_REGISTER}/${PROJECT_NAME}/${APP_NAME}:latest",
                                 "command": [
-                                    "unset"
-                                ],
-                                "args": [
-                                    "DB_PASSWORD",
-                                    "DB_ROOT_PASSWORD"
+                                    "unset DB_PASSWORD"
                                 ],
                                 "resources": {
                                     "limits": {
