@@ -65,8 +65,10 @@ log_info 'Running final exec -- Only MySQL server logs after this point'
 
 # trap 'echo "amigo mio" > /opt/app-root/src/mensaje' EXIT ERR
 
+unset DB_PASSWORD
+unset DB_ROOT_PASSWORD
 
-exec ${MYSQL_PREFIX}/libexec/mysqld --defaults-file=$MYSQL_DEFAULTS_FILE "$@" 2>&1
+exec endrund.sh  "$@" 
 
 
 
