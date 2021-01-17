@@ -59,7 +59,8 @@ ENV BASH_ENV=${CONTAINER_SCRIPTS_PATH}/scl_enable \
 
 
 
-ENV ENV=/etc/environment
+ENV ENV=/etc/environment \
+    BASH_ENV=/etc/bashrc
 
 
 COPY 10.3/root-common /
@@ -82,10 +83,7 @@ RUN rm -rf /etc/my.cnf.d/* && \
 
 USER 27
 
-ENV DB_USER=user \
-    DB_PASSWORD=passuser \
-    DB_DATABASE=db \
-    DB_ROOT_PASSWORD=passroot
+
 
 ENTRYPOINT ["container-entrypoint"]
 CMD ["run-mysqld"]
