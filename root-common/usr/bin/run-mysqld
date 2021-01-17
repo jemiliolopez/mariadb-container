@@ -64,8 +64,8 @@ log_info 'Running final exec -- Only MySQL server logs after this point'
 # source '/etc/environment'
 
 # trap 'echo "amigo mio" > /opt/app-root/src/mensaje' EXIT ERR
-DB_PASSWORD=''
-DB_ROOT_PASSWORD=''
+# DB_PASSWORD=''
+# DB_ROOT_PASSWORD=''
 
 exec endrund.sh  "$@" 
 

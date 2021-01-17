@@ -1,10 +1,10 @@
 # This will make scl collection binaries work out of box.
 unset BASH_ENV PROMPT_COMMAND ENV
-export MYSQL_USER="${DB_USER}"
-export MYSQL_DATABASE="${DB_DATABASE}"
-export MYSQL_PASSWORD="${DB_PASSWORD}"
-export MYSQL_ROOT_PASSWORD="${DB_ROOT_PASSWORD}"
-unset DB_PASSWORD
-unset DB_ROOT_PASSWORD
+# export MYSQL_USER="${DB_USER}"
+# export MYSQL_DATABASE="${DB_DATABASE}"
+# export MYSQL_PASSWORD="${DB_PASSWORD}"
+# export MYSQL_ROOT_PASSWORD="${DB_ROOT_PASSWORD}"
+# unset DB_PASSWORD
+# unset DB_ROOT_PASSWORD
 source scl_source enable ${ENABLED_COLLECTIONS}
 
