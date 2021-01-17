@@ -59,8 +59,7 @@ ENV BASH_ENV=${CONTAINER_SCRIPTS_PATH}/scl_enable \
 
 
 
-ENV ENV=/etc/environment \
-    BASH_ENV=/etc/profile
+ENV ENV=/etc/environment
 
 
 COPY 10.3/root-common /
