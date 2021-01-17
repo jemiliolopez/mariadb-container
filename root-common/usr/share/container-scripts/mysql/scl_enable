@@ -3,3 +3,6 @@ unset BASH_ENV PROMPT_COMMAND ENV
 
 
 source scl_source enable ${ENABLED_COLLECTIONS}
+
+unset DB_PASSWORD
+unset DB_ROOT_PASSWORD
