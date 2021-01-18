@@ -78,8 +78,8 @@ RUN rm -rf /etc/my.cnf.d/* && \
 # https://github.com/sclorg/httpd-container/issues/30
 # VOLUME ["/var/lib/mysql/data"]
 
-RUN groupadd -g 1002 default2
-RUN useradd -u 1002 -r -g 1002 -d $HOME -s /bin/sh -c "Usuario por defecto mio" default2
+# RUN groupadd -g 1002 default2
+RUN useradd -u 1002 -r -g 0 -d $HOME -s /bin/sh -c "Usuario por defecto mio" default2
 USER 27
 
 
