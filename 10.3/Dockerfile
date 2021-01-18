@@ -86,4 +86,3 @@ USER 27
 
 ENTRYPOINT ["container-entrypoint"]
 CMD ["run-mysqld"]
-en
