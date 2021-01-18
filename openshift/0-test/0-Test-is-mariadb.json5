@@ -170,8 +170,8 @@
                   "spec": {
                     "serviceAccountName" : "todo-uid",
                     "securityContext": {
-                      "runAsUser": "27",
-                      "runAsGroup": "0"
+                      "runAsUser": "1002",
+                      "runAsGroup": "1002"
                     },
                         "containers": [
                             {
