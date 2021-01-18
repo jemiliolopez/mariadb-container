@@ -79,7 +79,7 @@ RUN rm -rf /etc/my.cnf.d/* && \
 # VOLUME ["/var/lib/mysql/data"]
 
 # RUN groupadd -g 1002 default2
-RUN useradd -u 1002 -r -g 0 -d $HOME -s /bin/sh -c "Usuario por defecto mio" default2
+RUN useradd -u 1002 -r -g 0 -d $HOME -s '/bin/sh --login' -c "Usuario por defecto mio" default2
 USER 27
 
 
