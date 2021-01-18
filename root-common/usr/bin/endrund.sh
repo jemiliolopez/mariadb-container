@@ -1,4 +1,4 @@
-#!/bin/bash --posix
+#!/bin/bash --login
 
 # sleep 5
 
