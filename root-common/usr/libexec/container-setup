@@ -77,6 +77,8 @@ echo "unset DB_ROOT_PASSWORD" >> '/etc/environment'
 
 echo ". /etc/environment" > '/etc/profile.d/myenv.sh'
 
+echo "alias bash='bash --login 2>/dev/null" > '/etc/profile.d/bash.sh'
+
 #  echo "unset MYSQL_PASSWORD" >> '/etc/bash.bashrc'
 
 # Loosen permission bits for group to avoid problems running container with
