@@ -206,58 +206,58 @@
                                     }
                                 },
                               "env": [
-                                {
-                                  "name": "DB_USER",
-                                  "valueFrom": {
-                                    "configMapKeyRef": {
-                                      "name": "${APP_NAME}-cfmap",
-                                      "key": "mysql.user"
-                                    }
-                                  }
-                                },
-                                {
-                                  "name": "DB_PASSWORD",
-                                  "valueFrom": {
-                                    "secretKeyRef": {
-                                      "name": "${APP_NAME}-secret",
-                                      "key": "mysql.password"
-                                    }
-                                  } 
+                                // {
+                                //   "name": "DB_USER",
+                                //   "valueFrom": {
+                                //     "configMapKeyRef": {
+                                //       "name": "${APP_NAME}-cfmap",
+                                //       "key": "mysql.user"
+                                //     }
+                                //   }
+                                // },
+                                // {
+                                //   "name": "DB_PASSWORD",
+                                //   "valueFrom": {
+                                //     "secretKeyRef": {
+                                //       "name": "${APP_NAME}-secret",
+                                //       "key": "mysql.password"
+                                //     }
+                                //   } 
+                                // },
+                                // {
+                                //   "name": "DB_DATABASE",
+                                //   "valueFrom": {
+                                //     "configMapKeyRef": {
+                                //       "name": "${APP_NAME}-cfmap",
+                                //       "key": "mysql.database"
+                                //     }
+                                //   }
+                                // }, 
+                                // { 
+                                //   "name": "DB_ROOT_PASSWORD",
+                                //   "valueFrom": {
+                                //     "secretKeyRef": {
+                                //       "name": "${APP_NAME}-secret",
+                                //       "key": "mysql.root.password" 
+                                //     }
+                                //   }
+                                // },
+                                    {
+                                        "name": "DB_USER",
+                                        "value": ""
+                                    },
+                                    {
+                                        "name": "DB_PASSWORD",
+                                        "value": ""
                                 },
                                 {
                                   "name": "DB_DATABASE",
-                                  "valueFrom": {
-                                    "configMapKeyRef": {
-                                      "name": "${APP_NAME}-cfmap",
-                                      "key": "mysql.database"
-                                    }
-                                  }
-                                }, 
-                                { 
-                                  "name": "DB_ROOT_PASSWORD",
-                                  "valueFrom": {
-                                    "secretKeyRef": {
-                                      "name": "${APP_NAME}-secret",
-                                      "key": "mysql.root.password" 
-                                    }
-                                  }
+                                  "value": ""
                                 },
-                                    // {
-                                    //     "name": "MYSQL_OPERATIONS_USER",
-                                    //     "value": "${MYSQL_OPERATIONS_USER}"
-                                    // },
-                                    // {
-                                    //     "name": "MYSQL_OPERATIONS_PASSWORD",
-                                    //     "value": "${MYSQL_OPERATIONS_PASSWORD}"
-                                // },
-                                // {
-                                //   "name": "PRUEBA",
-                                //   "value": "${PRUEBA}"
-                                // },
-                                // {
-                                //   "name": "BASH_ENV",
-                                //   "value": "/var/lib/mysql/.bashrc"
-                                // },
+                                {
+                                  "name": "DB_ROOT_PASSWORD",
+                                  "value": ""
+                                },
 
                               ], 
                               // "lifecycle": { 

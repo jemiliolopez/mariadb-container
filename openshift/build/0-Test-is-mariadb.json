@@ -115,39 +115,19 @@
                                 "env": [
                                     {
                                         "name": "DB_USER",
-                                        "valueFrom": {
-                                            "configMapKeyRef": {
-                                                "name": "${APP_NAME}-cfmap",
-                                                "key": "mysql.user"
-                                            }
-                                        }
+                                        "value": ""
                                     },
                                     {
                                         "name": "DB_PASSWORD",
-                                        "valueFrom": {
-                                            "secretKeyRef": {
-                                                "name": "${APP_NAME}-secret",
-                                                "key": "mysql.password"
-                                            }
-                                        }
+                                        "value": ""
                                     },
                                     {
                                         "name": "DB_DATABASE",
-                                        "valueFrom": {
-                                            "configMapKeyRef": {
-                                                "name": "${APP_NAME}-cfmap",
-                                                "key": "mysql.database"
-                                            }
-                                        }
+                                        "value": ""
                                     },
                                     {
                                         "name": "DB_ROOT_PASSWORD",
-                                        "valueFrom": {
-                                            "secretKeyRef": {
-                                                "name": "${APP_NAME}-secret",
-                                                "key": "mysql.root.password"
-                                            }
-                                        }
+                                        "value": ""
                                     }
                                 ]
                             }
