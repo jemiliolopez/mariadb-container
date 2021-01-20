@@ -1,5 +1,5 @@
 PROJECT_NAME="imagenes-wordpress"
-APP_NAME="is-0-mariadb-10-3"
+APP_NAME="0-is-mariadb103"
 #MYSQL_USER="user" 
 #MYSQL_PASSWORD="paso" 
 #MYSQL_DATABASE="db" 
