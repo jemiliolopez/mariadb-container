@@ -69,7 +69,7 @@
             },
             "type": "kubernetes.io/ssh-auth",
             "data": {
-                "ssh-privatekey": "${SSH_PRIVATE_KEY}"
+                "ssh-privatekey": "${{SSH_PRIVATE_KEY}}"
             }
         },
         {
