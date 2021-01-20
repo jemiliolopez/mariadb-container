@@ -59,6 +59,23 @@
             "kind": "Secret",
             "apiVersion": "v1",
             "metadata": {
+                "name": "ssh-github",
+                "namespace": "${PROJECT_NAME}",
+                "labels": {
+                    "app": "${APP_NAME}",
+                    "app-service": "${APP_NAME}",
+                    "build": "${APP_NAME}"
+                }
+            },
+            "type": "kubernetes.io/ssh-auth",
+            "data": {
+                "ssh-privatekey": "${SSH_PRIVATE_KEY}"
+            }
+        },
+        {
+            "kind": "Secret",
+            "apiVersion": "v1",
+            "metadata": {
                 "name": "${APP_NAME}-secret",
                 "namespace": "${PROJECT_NAME}",
                 "labels": {
