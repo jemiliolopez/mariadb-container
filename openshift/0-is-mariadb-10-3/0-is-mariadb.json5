@@ -212,7 +212,7 @@
             "from": {
               "kind": "DockerImage",
               "name": "quay.io/centos7/s2i-core-centos7"
-            },
+            }, 
             "env": [
                {
                                   "name": "DB_USER",
