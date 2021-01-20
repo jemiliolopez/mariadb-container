@@ -1,8 +1,8 @@
 PROJECT_NAME="imagenes-wordpress"
 APP_NAME="0-is-mariadb103"
 STRATEGY_TYPE="Docker"
-#SSH_GITHUB="github-secret-jemiliolopez"
-SSH_PRIVATE_KEY="/var/home/emilio/.ssh/id_rsa"
+SSH_GITHUB="github-secret-jemiliolopez"
+SSH_PRIVATE_KEY="$(cat /var/home/emilio/.ssh/id_rsa | base64)"
 SOURCE_REPOSITORY_MYSQL_URL="git@github.com:jemiliolopez/mariadb-container.git"
 SOURCE_REPOSITORY_MYSQL_TAG="dev"
 # DOCKER_REGISTER= "docker-registry.default.svc:5000"
@@ -10,3 +10,6 @@ SOURCE_REPOSITORY_MYSQL_TAG="dev"
 #DB_PASSWORD="passuser" 
 # DB_DATABASE="db"
 # MYSQL_ROOT_PASSWORD="passroot"
+# oc create secret generic repo-at-github \
+#      --from-file=ssh-privatekey=repo-at-github \
+#      --type=kubernetes.io/ssh-auth
