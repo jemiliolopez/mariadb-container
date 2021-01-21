@@ -244,19 +244,19 @@
                                 // },
                                     {
                                         "name": "DB_USER",
-                                        "value": ""
+                                        "value": null
                                     },
                                     {
                                         "name": "DB_PASSWORD",
-                                        "value": ""
+                                        "value": null
                                 },
                                 {
                                   "name": "DB_DATABASE",
-                                  "value": ""
+                                  "value": null
                                 },
                                 {
                                   "name": "DB_ROOT_PASSWORD",
-                                  "value": ""
+                                  "value": null
                                 },
 
                               ], 
