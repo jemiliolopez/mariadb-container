@@ -215,50 +215,50 @@
               "name": "quay.io/centos7/s2i-core-centos7"
             }, 
             "env": [
-              //  {
-              //                     "name": "DB_USER",
-              //                     "valueFrom": {
-              //                       "configMapKeyRef": {
-              //                         "name": "${APP_NAME}-cfmap",
-              //                         "key": "mysql.user"
-              //                       }
-              //                     }
-              //                   },
-              //                   {
-              //                     "name": "DB_PASSWORD",
-              //                     "valueFrom": {
-              //                       "secretKeyRef": {
-              //                         "name": "${APP_NAME}-secret",
-              //                         "key": "mysql.password"
-              //                       }
-              //                     }
-              //                   },
-              // { 
-              //   "name": "DB_ROOT_PASSWORD",
-              //   "valueFrom": {
-              //     "secretKeyRef": {
-              //       "name": "${APP_NAME}-secret",
-              //       "key": "mysql.root.password"
-              //     }
-              //   }
-              // },
-              //                   {
-              //                     "name": "DB_DATABASE",
-              //                     "valueFrom": {
-              //                       "configMapKeyRef": {
-              //                         "name": "${APP_NAME}-cfmap",
-              //                         "key": "mysql.database"
-              //                       }
-              //                     }
-              //                   },
-              // {
-              //   "name": "DB_USER",
-              //   "value": "${DB_USER}"
-              // },
-              // {
-              //   "name": "DB_PASSWORD",
-              //   "value": "${DB_PASSWORD}"
-              // },
+               {
+                                  "name": "DB_USER",
+                                  "valueFrom": {
+                                    "configMapKeyRef": {
+                                      "name": "${APP_NAME}-cfmap",
+                                      "key": "mysql.user"
+                                    }
+                                  }
+                                },
+                                {
+                                  "name": "DB_PASSWORD",
+                                  "valueFrom": {
+                                    "secretKeyRef": {
+                                      "name": "${APP_NAME}-secret",
+                                      "key": "mysql.password"
+                                    }
+                                  }
+                                },
+              { 
+                "name": "DB_ROOT_PASSWORD",
+                "valueFrom": {
+                  "secretKeyRef": {
+                    "name": "${APP_NAME}-secret",
+                    "key": "mysql.root.password"
+                  }
+                }
+              },
+                                {
+                                  "name": "DB_DATABASE",
+                                  "valueFrom": {
+                                    "configMapKeyRef": {
+                                      "name": "${APP_NAME}-cfmap",
+                                      "key": "mysql.database"
+                                    }
+                                  }
+                                },
+              {
+                "name": "DB_USER",
+                "value": "${DB_USER}"
+              },
+              {
+                "name": "DB_PASSWORD",
+                "value": "${DB_PASSWORD}"
+              },
               // {
               //   "name": "MYSQL_OPERATIONS_USER",
               //   "value": "${MYSQL_OPERATIONS_USER}"
