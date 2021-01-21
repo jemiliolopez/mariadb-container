@@ -206,58 +206,58 @@
                                     }
                                 },
                               "env": [
-                                // {
-                                //   "name": "DB_USER",
-                                //   "valueFrom": {
-                                //     "configMapKeyRef": {
-                                //       "name": "${APP_NAME}-cfmap",
-                                //       "key": "mysql.user"
-                                //     }
-                                //   }
-                                // },
-                                // {
-                                //   "name": "DB_PASSWORD",
-                                //   "valueFrom": {
-                                //     "secretKeyRef": {
-                                //       "name": "${APP_NAME}-secret",
-                                //       "key": "mysql.password"
-                                //     }
-                                //   } 
-                                // },
-                                // {
-                                //   "name": "DB_DATABASE",
-                                //   "valueFrom": {
-                                //     "configMapKeyRef": {
-                                //       "name": "${APP_NAME}-cfmap",
-                                //       "key": "mysql.database"
-                                //     }
-                                //   }
-                                // }, 
-                                // { 
-                                //   "name": "DB_ROOT_PASSWORD",
-                                //   "valueFrom": {
-                                //     "secretKeyRef": {
-                                //       "name": "${APP_NAME}-secret",
-                                //       "key": "mysql.root.password" 
-                                //     }
-                                //   }
-                                // },
-                                    {
-                                        "name": "DB_USER",
-                                        "value": null
-                                    },
-                                    {
-                                        "name": "DB_PASSWORD",
-                                        "value": null
+                                {
+                                  "name": "DB_USER",
+                                  "valueFrom": {
+                                    "configMapKeyRef": {
+                                      "name": "${APP_NAME}-cfmap",
+                                      "key": "mysql.user"
+                                    }
+                                  }
+                                },
+                                {
+                                  "name": "DB_PASSWORD",
+                                  "valueFrom": {
+                                    "secretKeyRef": {
+                                      "name": "${APP_NAME}-secret",
+                                      "key": "mysql.password"
+                                    }
+                                  } 
                                 },
                                 {
                                   "name": "DB_DATABASE",
-                                  "value": null
-                                },
-                                {
+                                  "valueFrom": {
+                                    "configMapKeyRef": {
+                                      "name": "${APP_NAME}-cfmap",
+                                      "key": "mysql.database"
+                                    }
+                                  }
+                                }, 
+                                { 
                                   "name": "DB_ROOT_PASSWORD",
-                                  "value": null
+                                  "valueFrom": {
+                                    "secretKeyRef": {
+                                      "name": "${APP_NAME}-secret",
+                                      "key": "mysql.root.password" 
+                                    }
+                                  }
                                 },
+                                //     {
+                                //         "name": "DB_USER",
+                                //         "value": null
+                                //     },
+                                //     {
+                                //         "name": "DB_PASSWORD",
+                                //         "value": null
+                                // },
+                                // {
+                                //   "name": "DB_DATABASE",
+                                //   "value": null
+                                // },
+                                // {
+                                //   "name": "DB_ROOT_PASSWORD",
+                                //   "value": null
+                                // },
 
                               ], 
                               // "lifecycle": { 
