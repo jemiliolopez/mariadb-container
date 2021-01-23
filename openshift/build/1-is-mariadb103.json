@@ -125,7 +125,7 @@
                     "sourceSecret": {
                         "name": "${SSH_GITHUB}"
                     },
-                    "contextDir": "openshift/contexto",
+                    "contextDir": "openshift/contexto/vacio",
                     "git": {
                         "ref": "${SOURCE_REPOSITORY_MYSQL_TAG}",
                         "uri": "${SOURCE_REPOSITORY_MYSQL_URL}"
