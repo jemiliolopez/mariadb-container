@@ -146,14 +146,14 @@
               "name": "${SOURCE_IMAGE_STREAM}"
             },
             "env": [
-              // {
-              //   "name": "DB_USER",
-              //   "value": "${DB_USER}"
-              // },
-              // {
-              //   "name": "DB_PASSWORD",
-              //   "value": "${DB_PASSWORD}"
-              // },
+              {
+                "name": "DB_USER",
+                "value": "${DB_USER}"
+              },
+              {
+                "name": "DB_PASSWORD",
+                "value": "${DB_PASSWORD}"
+              },
             //   { 
             //   "name": "MYSQL_OPERATIONS_USER",
             //   "value": "${MYSQL_OPERATIONS_USER}"
@@ -162,14 +162,14 @@
             //   "name": "MYSQL_OPERATIONS_PASSWORD",
             //   "value": "${MYSQL_OPERATIONS_PASSWORD}" 
             // },
-              // { 
-              //   "name": "DB_DATABASE",
-              //   "value": "${DB_DATABASE}"
-              // },
-              // {
-              //   "name": "DB_ROOT_PASSWORD",
-              //   "value": "${DB_ROOT_PASSWORD}"
-              // }
+              { 
+                "name": "DB_DATABASE",
+                "value": "${DB_DATABASE}"
+              },
+              {
+                "name": "DB_ROOT_PASSWORD",
+                "value": "${DB_ROOT_PASSWORD}"
+              }
             ]
           }
         },
