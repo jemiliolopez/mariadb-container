@@ -1,6 +1,6 @@
 password_change() {
   log_info 'Setting passwords ...'
-  export MYSQL_PWD="$MYSQL_ROOT_PASSWORD"
+ 
   # Set the password for MySQL user and root everytime this container is started.
   # This allows to change the password by editing the deployment configuration.
   if [[ -v MYSQL_USER && -v MYSQL_PASSWORD ]]; then
@@ -44,9 +44,11 @@ mysql $mysql_flags <<EOSQL
 EOSQL
     fi
   fi
+ 
 }
 
 if ! [ -v MYSQL_RUNNING_AS_SLAVE ] ; then
+    export MYSQL_PWD="$DB_ROOT_PASSWORD"
   password_change
 fi
 
