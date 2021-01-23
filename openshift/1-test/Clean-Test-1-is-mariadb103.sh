@@ -23,5 +23,5 @@
 
 # oc apply -f wp-builds/PVs/os-nfs-wpp-pv08.json -f wp-builds/PVs/os-nfs-masterp-pv07.json -f wp-builds/PVs/os-nfs-slave1-pv06.json -f wp-builds/PVs/os-nfs-slave2-pv05.json && sleep 10 && \
 
-oc process -f ./../build/1-Test-is-mariadb103.json --param-file Env-1-Test-is-mariadb.params | oc delete -f -
+oc process -f ./../build/1-Test-is-mariadb103.json --param-file Env-1-Test-mariadb.params | oc delete -f -
    

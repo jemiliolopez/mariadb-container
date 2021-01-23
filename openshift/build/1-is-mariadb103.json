@@ -53,12 +53,12 @@
             "required": true
         },
         {
-            "name": "MYSQL_USER",
+            "name": "DB_USER",
             "description": "El nombre del host donde se encuentra la base de datos. Generalmente suele ser el nombre del servicio que expone la base de datos.",
             "value": "user"
         },
         {
-            "name": "MYSQL_PASSWORD",
+            "name": "DB_PASSWORD",
             "description": "Set the database collation.",
             "value": "passuser"
         },
@@ -73,12 +73,12 @@
             "value": "opassuser"
         },
         {
-            "name": "MYSQL_DATABASE",
+            "name": "DB_DATABASE",
             "description": "El nombre del host donde se encuentra la base de datos. Generalmente suele ser el nombre del servicio que expone la base de datos.",
             "value": "db"
         },
         {
-            "name": "MYSQL_ROOT_PASSWORD",
+            "name": "DB_ROOT_PASSWORD",
             "description": "Set the database collation.",
             "value": "passroot"
         }
@@ -141,32 +141,7 @@
                             "namespace": "${PROJECT_NAME}",
                             "name": "${SOURCE_IMAGE_STREAM}"
                         },
-                        "env": [
-                            {
-                                "name": "MYSQL_USER",
-                                "value": "${MYSQL_USER}"
-                            },
-                            {
-                                "name": "MYSQL_PASSWORD",
-                                "value": "${MYSQL_PASSWORD}"
-                            },
-                            {
-                                "name": "MYSQL_OPERATIONS_USER",
-                                "value": "${MYSQL_OPERATIONS_USER}"
-                            },
-                            {
-                                "name": "MYSQL_OPERATIONS_PASSWORD",
-                                "value": "${MYSQL_OPERATIONS_PASSWORD}"
-                            },
-                            {
-                                "name": "MYSQL_DATABASE",
-                                "value": "${MYSQL_DATABASE}"
-                            },
-                            {
-                                "name": "MYSQL_ROOT_PASSWORD",
-                                "value": "${MYSQL_ROOT_PASSWORD}"
-                            }
-                        ]
+                        "env": []
                     }
                 },
                 "triggers": [
