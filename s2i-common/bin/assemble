@@ -8,6 +8,13 @@ shopt -s dotglob
 echo "---> Installing application source ..."
 mv /tmp/src/* ./ 2>/dev/null || true
 
+
+export MYSQL_PWD="${DB_ROOT_PASSWORD}"
+export MYSQL_USER="${DB_USER}"
+export MYSQL_DATABASE="${DB_DATABASE}"
+export MYSQL_PASSWORD="${DB_PASSWORD}"
+export MYSQL_ROOT_PASSWORD="${DB_ROOT_PASSWORD}"
+
 # Fix source directory permissions
 /usr/libexec/fix-permissions ./
 
