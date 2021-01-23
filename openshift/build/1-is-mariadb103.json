@@ -63,12 +63,12 @@
             "value": "passuser"
         },
         {
-            "name": "MYSQL_OPERATIONS_USER",
+            "name": "DB_OPERATIONS_USER",
             "description": "El nombre del host donde se encuentra la base de datos. Generalmente suele ser el nombre del servicio que expone la base de datos.",
             "value": "ouser"
         },
         {
-            "name": "MYSQL_OPERATIONS_PASSWORD",
+            "name": "DB_OPERATIONS_PASSWORD",
             "description": "Set the database collation.",
             "value": "opassuser"
         },
