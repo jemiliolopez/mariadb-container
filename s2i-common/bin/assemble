@@ -14,6 +14,8 @@ export MYSQL_USER="${DB_USER}"
 export MYSQL_DATABASE="${DB_DATABASE}"
 export MYSQL_PASSWORD="${DB_PASSWORD}"
 export MYSQL_ROOT_PASSWORD="${DB_ROOT_PASSWORD}"
+export MYSQL_OPERATIONS_USER="${DB_OPERATIONS_USER}"
+export MYSQL_OPERATIONS_PASSWORD="${DB_OPERATIONS_PASSWORD}"
 
 # Fix source directory permissions
 /usr/libexec/fix-permissions ./

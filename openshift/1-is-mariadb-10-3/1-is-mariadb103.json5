@@ -154,14 +154,14 @@
                 "name": "DB_PASSWORD",
                 "value": "${DB_PASSWORD}"
               },
-            //   { 
-            //   "name": "MYSQL_OPERATIONS_USER",
-            //   "value": "${MYSQL_OPERATIONS_USER}"
-            // },
-            // {
-            //   "name": "MYSQL_OPERATIONS_PASSWORD",
-            //   "value": "${MYSQL_OPERATIONS_PASSWORD}" 
-            // },
+              { 
+              "name": "DB_OPERATIONS_USER",
+              "value": "${DB_OPERATIONS_USER}"
+            },
+            {
+              "name": "DB_OPERATIONS_PASSWORD",
+              "value": "${DB_OPERATIONS_PASSWORD}" 
+            },
               { 
                 "name": "DB_DATABASE",
                 "value": "${DB_DATABASE}"

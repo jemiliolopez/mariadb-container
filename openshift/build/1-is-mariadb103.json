@@ -151,6 +151,14 @@
                                 "value": "${DB_PASSWORD}"
                             },
                             {
+                                "name": "DB_OPERATIONS_USER",
+                                "value": "${DB_OPERATIONS_USER}"
+                            },
+                            {
+                                "name": "DB_OPERATIONS_PASSWORD",
+                                "value": "${DB_OPERATIONS_PASSWORD}"
+                            },
+                            {
                                 "name": "DB_DATABASE",
                                 "value": "${DB_DATABASE}"
                             },
