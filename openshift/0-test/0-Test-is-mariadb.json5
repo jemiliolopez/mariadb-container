@@ -1,0 +1,294 @@
+ {
+  "kind": "Template",
+  "apiVersion": "v1",
+  "metadata": {
+    "name": "0-Test",
+    "annotations": {
+      "openshift.io/display-name": "Test-is-wp",
+      "description": "Testear la imagenes wordpress. Para ello las desplegamos.",
+      "tags": "test-is-wp",
+      // "iconClass": "icon-wordpress"
+    },
+    "labels":{
+      "template": "0-test"  
+    }  
+  },
+  "parameters": [
+    {
+      "name": "PROJECT_NAME",
+      "description": "Nombre del proyecto openshift para poder acceder a su registro de imágenes de docker.",
+      "value": "imagenes-wordpress"
+    },
+    {
+      "name": "APP_NAME",
+      "description": "Nombre de la aplicación.",
+      "value": "is-wp"
+    },
+    // {
+    //   "name": "STRATEGY_TYPE",
+    //   "description": "Servicio de mysql.",
+    //   "value": "Source",
+    //   "required": true
+    // },
+    // {
+    //   "name": "SOURCE_IMAGE_STREAM",
+    //   "description": "Imagen stream desde la que se parte.",
+    //   "value": "docker-registry.default.svc:5000/imagenes-wordpress/is-0-mariadb-10.3"
+    // }, 
+    // {
+    //   "name": "SSH_GITHUB",
+    //   "description": "Servicio de mysql.", 
+    //   "value": "github-secret-jemiliolopez",
+    //   "required": true
+    // },
+    // {
+    //   "name": "SOURCE_REPOSITORY_MYSQL_URL",
+    //   "description": "The URL of the quickstart Git repository.",
+    //   "value": "git@github.com:jemiliolopez/mysql-container.git",
+    //   "required": true
+    // }, 
+    // {
+    //   "name": "SOURCE_REPOSITORY_MYSQL_TAG",
+    //   "description": "The tagged version of the source repository to use.",
+    //   "value": "master",
+    //   "required": true
+    // },
+    { "name": "DOCKER_REGISTER",
+      "description": "The password for the database user.",
+      "value": "docker-registry.default.svc:5000"
+    },
+    // {
+    //   "name": "MYSQL_USER",
+    //   "description": "El nombre del host donde se encuentra la base de datos. Generalmente suele ser el nombre del servicio que expone la base de datos.",
+    //   "value": "user"
+    // },
+    // {
+    //   "name": "MYSQL_PASSWORD",
+    //   "description": "Set the database collation.",
+    //   "value": "passuser" 
+    // },
+    // {
+    //   "name": "MYSQL_OPERATIONS_USER",
+    //   "description": "El nombre del host donde se encuentra la base de datos. Generalmente suele ser el nombre del servicio que expone la base de datos.",
+    //   "value": "user"
+    // },
+    // { 
+    //   "name": "MYSQL_OPERATIONS_PASSWORD",
+    //   "description": "Set the database collation.",
+    //   "value": "passuser"
+    // },
+    // {
+    //   "name": "MYSQL_DATABASE",
+    //   "description": "El nombre del host donde se encuentra la base de datos. Generalmente suele ser el nombre del servicio que expone la base de datos.",
+    //   "value": "db"
+    // },
+    // {
+    //   "name": "MYSQL_ROOT_PASSWORD",
+    //   "description": "Set the database collation.",
+    //   "value": ""
+    // },
+    // {
+    //   "name": "ROOT_PASSWORD",
+    //   "description": "Set the database collation.",
+    //   "value": "passroot"
+    // },
+    // {
+    //   "name": "PRUEBA",
+    //   "description": "Set the database collation.",
+    //   "value": "carajillo"
+    // }
+    
+  ],
+   "objects": [
+    {
+      "kind": "Secret",
+      "apiVersion": "v1",
+      "metadata": {
+        "name": "${APP_NAME}-secret",
+        "namespace": "${PROJECT_NAME}",
+        "labels": {
+          "app": "${APP_NAME}",
+          "app-service": "${APP_NAME}",
+          "build": "${APP_NAME}"
+        }
+      },
+      "type": "Opaque",
+      "stringData": {
+        "mysql.password": "amigo",
+        "mysql.root.password": "enemigo",
+      }
+    },
+    {
+      "kind": "ConfigMap",
+      "apiVersion": "v1",
+      "metadata": {
+        "name": "${APP_NAME}-cfmap",
+        "namespace": "${PROJECT_NAME}",
+        "labels": {
+          "app": "${APP_NAME}",
+          "app-service": "${APP_NAME}",
+          "build": "${APP_NAME}"
+        }
+      },
+      "data": {
+        "mysql.user": "gente",
+        "mysql.database": "puedeser",
+      }
+    },
+     { 
+            "kind": "DeploymentConfig",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "${APP_NAME}",
+                "labels": {
+                    "app": "${APP_NAME}",
+                    "app-service": "${APP_NAME}",
+                    "build": "${APP_NAME}"
+                }
+            },
+       "spec": {
+                "strategy": {
+                    "type": "Rolling"
+                },
+                "triggers": [
+                    {
+                        "type": "ConfigChange"
+                    }
+                ],
+                "replicas": 1,
+                "selector": {
+                    "app": "${APP_NAME}",
+                    "deployconfig": "${APP_NAME}"
+                },
+                "template": {
+                    "metadata": {
+                        "labels": {
+                            "app": "${APP_NAME}",
+                            "deployconfig": "${APP_NAME}"
+                        }
+                    }, 
+                  "spec": {
+                    "serviceAccountName" : "todo-uid",
+                    "securityContext": {
+                      "runAsUser": "1002",
+                      "runAsGroup": "1002"
+                    },
+                        "containers": [
+                            {
+                                "name": "${APP_NAME}",
+                              "image": "${DOCKER_REGISTER}/${PROJECT_NAME}/${APP_NAME}:latest",
+                              // "command": [
+                              //   "/usr/bin/env -i bash -l"
+                              // ],
+                              // "args": [ 
+               
+                              // ],
+                              // "lifecycle": {
+                              //   "postStart": {
+                              //     "exec":{
+                              //       "command": ["/bin/sh", "-c", "unset MYSQL_ROOT_PASSWORD", ";", "unset MYSQL_PASSWORD"] 
+                              //     }
+                              //   }
+                              // },
+                                // "ports": [
+                                //     {
+                                //         "containerPort": 8080,
+                                //         "protocol": "TCP"
+                                //     },
+                                //     {
+                                //         "containerPort": 8443,
+                                //         "protocol": "TCP"
+                                //     }
+                                // ],
+                                "resources": {
+                                    "limits": {
+                                        "memory": "512Mi"
+                                    }
+                                },
+                              "env": [
+                                {
+                                  "name": "DB_USER",
+                                  "valueFrom": {
+                                    "configMapKeyRef": {
+                                      "name": "${APP_NAME}-cfmap",
+                                      "key": "mysql.user"
+                                    }
+                                  }
+                                },
+                                {
+                                  "name": "DB_PASSWORD",
+                                  "valueFrom": {
+                                    "secretKeyRef": {
+                                      "name": "${APP_NAME}-secret",
+                                      "key": "mysql.password"
+                                    }
+                                  } 
+                                },
+                                {
+                                  "name": "DB_DATABASE",
+                                  "valueFrom": {
+                                    "configMapKeyRef": {
+                                      "name": "${APP_NAME}-cfmap",
+                                      "key": "mysql.database"
+                                    }
+                                  }
+                                }, 
+                                { 
+                                  "name": "DB_ROOT_PASSWORD",
+                                  "valueFrom": {
+                                    "secretKeyRef": {
+                                      "name": "${APP_NAME}-secret",
+                                      "key": "mysql.root.password" 
+                                    }
+                                  }
+                                },
+                                //     {
+                                //         "name": "DB_USER",
+                                //         "value": null
+                                //     },
+                                //     {
+                                //         "name": "DB_PASSWORD",
+                                //         "value": null
+                                // },
+                                // {
+                                //   "name": "DB_DATABASE",
+                                //   "value": null
+                                // },
+                                // {
+                                //   "name": "DB_ROOT_PASSWORD",
+                                //   "value": null
+                                // },
+
+                              ], 
+                              // "lifecycle": { 
+                              //   "postStart": {
+                              //     "exec": {
+                              //       "command": [ "/bin/sh", "-c", "env", "-u", "MYSQL_USER", "/bin/sh", "-l" ]
+                              //     }
+                              //   }
+                              // },
+                                // "volumeMounts": [
+                                //     {
+                                //         "name": "${APP_NAME}-wpp-data",
+                                //         "mountPath": "/opt/app-root/src/wp-content"
+                                //     }
+                                // ]
+                            }
+                        ], 
+                        // "volumes": [
+                        //     {
+                        //         "name": "${APP_NAME}-wpp-data",
+                        //         "persistentVolumeClaim": {
+                        //             "claimName": "${APP_NAME}-wpp-data"
+                        //         }
+                        //     }
+                        // ],
+                        "dnsPolicy": "ClusterFirst",
+                        "restartPolicy": "Always",
+                        "terminationGracePeriodSeconds": "30"
+                    }
+                }
+            }
+        }
+  ]
+}

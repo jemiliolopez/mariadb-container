@@ -1,0 +1,289 @@
+{
+  "kind": "Template",
+  "apiVersion": "v1",
+  "metadata": {
+    "name": "Imagen mariadb10.3",
+    "annotations": {
+      "openshift.io/display-name": "imagen-mariadb-10.3",
+      "description": "Creamos la imagen mariadb  a partir de software collection. Después desplegamos.",
+      "tags": "wordpress,mysql",
+      // "iconClass": "icon-wordpress"
+    },
+    "labels":{
+      "template": "mariadb"
+    }
+  }, 
+  "parameters": [ 
+    {
+      "name": "PROJECT_NAME",
+      "description": "Nombre del proyecto openshift para poder acceder a su registro de imágenes de docker.",
+      "value": "imagenes-wordpress"
+    },
+    {
+      "name": "APP_NAME",
+      "description": "Nombre de la aplicación.",
+      "value": "is-mariadb-10.3"
+    },
+    {
+      "name": "STRATEGY_TYPE",
+      "description": "Servicio de mysql.",
+      "value": "Docker",
+      "required": true
+    },
+    {
+      "name": "SSH_GITHUB",
+      "description": "Servicio de mysql.",
+      "value": "github-secret-jemiliolopez",
+      "required": true
+    },
+    {
+      "name": "SOURCE_REPOSITORY_MYSQL_URL",
+      "description": "The URL of the quickstart Git repository.",
+      "value": "git@github.com:jemiliolopez/mariadb-container.git",
+      "required": true
+    },
+    {
+      "name": "SOURCE_REPOSITORY_MYSQL_TAG",
+      "description": "The tagged version of the source repository to use.",
+      "v# alue": "main",
+      "required": true 
+    },
+    {
+      "name": "SSH_PRIVATE_KEY",
+      "description": "Path dónde se encuentra la clave privada ssh.",
+      "value": "/home/emilio/.ssh/id_rsa",
+      "required": true
+    }, 
+    // {
+    //   "name": "DB_USER",
+    //   "description": "El nombre del host donde se encuentra la base de datos. Generalmente suele ser el nombre del servicio que expone la base de datos.",
+    //   "value": "user"
+    // },
+    // {
+    //   "name": "DB_PASSWORD",
+    //   "description": "Set the database collation.",
+    //   "value": "passuser"
+    // },
+    // {
+    //   "name": "MYSQL_OPERATIONS_USER",
+    //   "description": "El nombre del host donde se encuentra la base de datos. Generalmente suele ser el nombre del servicio que expone la base de datos.",
+    //   "value": "user"
+    // },
+    // {
+    //   "name": "MYSQL_OPERATIONS_PASSWORD",
+    //   "description": "Set the database collation.",
+    //   "value": "passuser"
+    // },
+    // {
+    //   "name": "DB_DATABASE",
+    //   "description": "El nombre del host donde se encuentra la base de datos. Generalmente suele ser el nombre del servicio que expone la base de datos.",
+    //   "value": "db"
+    // },
+    // {
+    //   "name": "MYSQL_ROOT_PASSWORD",
+    //   "description": "Set the database collation.",
+    //   "value": "passroot"
+    // },
+    // {
+    //   "name": "PRUEBA",
+    //   "description": "Set the database collation.",
+    //   "value": "carajillo"
+    // },
+  ],
+  "objects": [
+    // {
+    //   "kind": "Secret",
+    //   "apiVersion": "v1",
+    //   "metadata": {
+    //     "name": "ssh-github",
+    //     "namespace": "${PROJECT_NAME}",
+    //     "labels": {
+    //       "app": "${APP_NAME}",
+    //       "app-service": "${APP_NAME}", 
+    //       "build": "${APP_NAME}"
+    //     }
+    //   }, 
+    //   "type": "kubernetes.io/ssh-auth", 
+    //   "data": {
+    //     "ssh-privatekey": "${SSH_PRIVATE_KEY}"
+    //   }
+    // },
+    {  
+      "kind": "Secret",
+      "apiVersion": "v1",
+      "metadata": {
+        "name": "${APP_NAME}-secret",
+        "namespace": "${PROJECT_NAME}",
+        "labels": {
+          "app": "${APP_NAME}",
+          "app-service": "${APP_NAME}",
+          "build": "${APP_NAME}"
+        }
+      },
+      "type": "Opaque",
+      "stringData": {
+        "mysql.password": "amigo",
+        "mysql.root.password": "enemigo",
+      }
+    },
+    {
+      "kind": "ConfigMap",
+      "apiVersion": "v1",
+      "metadata": {
+        "name": "${APP_NAME}-cfmap",
+        "namespace": "${PROJECT_NAME}",
+        "labels": {
+          "app": "${APP_NAME}",
+          "app-service": "${APP_NAME}",
+          "build": "${APP_NAME}"
+        }
+      },
+      "data": {
+        "mysql.user": "gente",
+        "mysql.database": "puedeser",
+      }
+    },
+    {
+      "kind": "ImageStream",
+      "apiVersion": "v1",
+      "metadata": {
+        "name": "${APP_NAME}",
+        // "namespace": "${PROJECT_NAME}",
+        "labels": {
+          "app": "${APP_NAME}",
+          "app-service": "${APP_NAME}",
+          "build": "${APP_NAME}"
+        }
+      }
+    },
+    {
+      "kind": "BuildConfig",
+      "apiVersion": "v1",
+      "metadata": {
+        "namespace": "${PROJECT_NAME}",
+        "name": "${APP_NAME}",
+
+        "labels": {
+          "app": "${APP_NAME}",
+          "app-service": "${APP_NAME}", 
+          "build": "${APP_NAME}"
+        }
+      },
+      "spec": {
+        "failedBuildsHistoryLimit": 5,
+        "nodeSelector": null,
+        "output": {
+          "to": {
+            "kind": "ImageStreamTag",
+            "name": "${APP_NAME}:latest"
+          }
+        },
+        "postCommit": {
+          
+        },
+        "resources": {
+        },
+        "triggers": [
+          {
+            "type": "ConfigChange"
+          },
+          {
+            "type": "ImageChange"
+          }
+        ],
+        "runPolicy": "Serial",
+        "source": {
+           "sourceSecret": {
+             "name": "${SSH_GITHUB}"
+             // "name": "ssh-github"
+          }, 
+          "type": "Git",
+          // "contextDir": "8.0",
+          "git": {
+            "uri": "${SOURCE_REPOSITORY_MYSQL_URL}",
+            "ref": "${SOURCE_REPOSITORY_MYSQL_TAG}"
+          }
+        },
+        "strategy": {
+          "type": "${STRATEGY_TYPE}", 
+          "dockerStrategy": { 
+            "dockerfilePath": "10.3/Dockerfile",
+            // "contextDir": "8.0/",
+            // "forcePull": true,
+            "from": {
+              "kind": "DockerImage",
+              "name": "quay.io/centos7/s2i-core-centos7"
+            }, 
+            "env": [
+              //  {
+              //                     "name": "DB_USER",
+              //                     "valueFrom": {
+              //                       "configMapKeyRef": {
+              //                         "name": "${APP_NAME}-cfmap",
+              //                         "key": "mysql.user"
+              //                       }
+              //                     }
+              //                   },
+              //                   {
+              //                     "name": "DB_PASSWORD",
+              //                     "valueFrom": {
+              //                       "secretKeyRef": {
+              //                         "name": "${APP_NAME}-secret",
+              //                         "key": "mysql.password"
+              //                       }
+              //                     }
+              //                   },
+              // { 
+              //   "name": "DB_ROOT_PASSWORD",
+              //   "valueFrom": {
+              //     "secretKeyRef": {
+              //       "name": "${APP_NAME}-secret",
+              //       "key": "mysql.root.password"
+              //     }
+              //   }
+              // },
+              //                   {
+              //                     "name": "DB_DATABASE",
+              //                     "valueFrom": {
+              //                       "configMapKeyRef": {
+              //                         "name": "${APP_NAME}-cfmap",
+              //                         "key": "mysql.database"
+              //                       }
+              //                     }
+              //                   },
+              // {
+              //   "name": "DB_USER",
+              //   "value": "${DB_USER}"
+              // },
+              // {
+              //   "name": "DB_PASSWORD",
+              //   "value": "${DB_PASSWORD}"
+              // },
+              // {
+              //   "name": "MYSQL_OPERATIONS_USER",
+              //   "value": "${MYSQL_OPERATIONS_USER}"
+              // },
+              // {
+              //   "name": "MYSQL_OPERATIONS_PASSWORD",
+              //   "value": "${MYSQL_OPERATIONS_PASSWORD}"
+              // },
+              // {
+              //   "name": "DB_DATABASE", 
+              //   "value": "${DB_DATABASE}"
+              // },
+              // { 
+              //   "name": "MYSQL_ROOT_PASSWORD",
+              //   "value": "${MYSQL_ROOT_PASSWORD}"
+              // },
+              // {
+              //   "name": "PRUEBA",
+              //   "description": "Set the database collation.",
+              //   "value": "${PRUEBA}"
+              // }
+            ]  
+          }
+        } 
+      }
+    }
+  ]
+}

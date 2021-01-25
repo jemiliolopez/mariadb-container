@@ -1,0 +1,201 @@
+ {
+  "kind": "Template",
+  "apiVersion": "v1",
+  "metadata": {
+    "name": "Test is-wp",
+    "annotations": {
+      "openshift.io/display-name": "Test-is-wp",
+      "description": "Testear la imagenes wordpress. Para ello las desplegamos.",
+      "tags": "test-is-wp",
+      // "iconClass": "icon-wordpress"
+    },
+    "labels":{
+      "template": "test-is-wp"  
+    }  
+  }, 
+  "parameters": [
+    {
+      "name": "PROJECT_NAME",
+      "description": "Nombre del proyecto openshift para poder acceder a su registro de imágenes de docker.",
+      "value": "imagenes-wordpress"
+    },
+    {
+      "name": "APP_NAME",
+      "description": "Nombre de la aplicación.",
+      "value": "is-wp"
+    },
+    {
+      "name": "STRATEGY_TYPE",
+      "description": "Servicio de mysql.",
+      "value": "Source",
+      "required": true
+    },
+    {
+      "name": "SOURCE_IMAGE_STREAM",
+      "description": "Imagen stream desde la que se parte.",
+      "value": "docker-registry.default.svc:5000/imagenes-wordpress/is-0-mariadb-10.3"
+    },
+    {
+      "name": "STRATEGY_TYPE",
+      "description": "Servicio de mysql.",
+      "value": "Docker",
+    
+    },
+    {
+      "name": "SSH_GITHUB",
+      "description": "Servicio de mysql.",
+      "value": "github-secret-jemiliolopez",
+      "required": true
+    },
+    {
+      "name": "SOURCE_REPOSITORY_MYSQL_URL",
+      "description": "The URL of the quickstart Git repository.",
+      "value": "git@github.com:jemiliolopez/mysql-container.git",
+      "required": true
+    }, 
+    {
+      "name": "SOURCE_REPOSITORY_MYSQL_TAG",
+      "description": "The tagged version of the source repository to use.",
+      "value": "master",
+      "required": true
+    },
+    { "name": "DOCKER_REGISTER",
+      "description": "The password for the database user.",
+      "value": "docker-registry.default.svc:5000"
+    },
+    {
+      "name": "DB_USER",
+      "description": "El nombre del host donde se encuentra la base de datos. Generalmente suele ser el nombre del servicio que expone la base de datos.",
+      "value": "user"
+    },
+    {
+      "name": "DB_PASSWORD",
+      "description": "Set the database collation.",
+      "value": "passuser"
+    },
+    {
+      "name": "DB_OPERATIONS_USER",
+      "description": "El nombre del host donde se encuentra la base de datos. Generalmente suele ser el nombre del servicio que expone la base de datos.",
+      "value": "user"
+    },
+    {
+      "name": "DB_OPERATIONS_PASSWORD",
+      "description": "Set the database collation.",
+      "value": "passuser"
+    },
+    {
+      "name": "DB_DATABASE",
+      "description": "El nombre del host donde se encuentra la base de datos. Generalmente suele ser el nombre del servicio que expone la base de datos.",
+      "value": "db"
+    },
+    {
+      "name": "DB_ROOT_PASSWORD",
+      "description": "Set the database collation.",
+      "value": "passroot"
+    }
+    
+  ],
+  "objects": [
+     {
+            "kind": "DeploymentConfig",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "${APP_NAME}",
+                "labels": {
+                    "app": "${APP_NAME}",
+                    "app-service": "${APP_NAME}",
+                    "build": "${APP_NAME}"
+                }
+            },
+            "spec": {
+                "strategy": {
+                    "type": "Rolling"
+                },
+                "triggers": [
+                    {
+                        "type": "ConfigChange"
+                    }
+                ],
+                "replicas": 1,
+                "selector": {
+                    "app": "${APP_NAME}",
+                    "deployconfig": "${APP_NAME}"
+                },
+                "template": {
+                    "metadata": {
+                        "labels": {
+                            "app": "${APP_NAME}",
+                            "deployconfig": "${APP_NAME}"
+                        }
+                    }, 
+                    "spec": {
+                        "containers": [
+                            {
+                                "name": "${APP_NAME}",
+                                "image": "${DOCKER_REGISTER}/${PROJECT_NAME}/${APP_NAME}:latest",
+                                // "ports": [
+                                //     {
+                                //         "containerPort": 8080,
+                                //         "protocol": "TCP"
+                                //     },
+                                //     {
+                                //         "containerPort": 8443,
+                                //         "protocol": "TCP"
+                                //     }
+                                // ],
+                                "resources": {
+                                    "limits": {
+                                        "memory": "512Mi"
+                                    }
+                                },
+                                "env": [
+                                    {
+                                        "name": "DB_USER",
+                                        "value": "${DB_USER}"
+                                    },
+                                    {
+                                        "name": "DB_PASSWORD",
+                                        "value": "${DB_PASSWORD}"
+                                    },
+                                  {
+                                    "name": "DB_OPERATIONS_USER",
+                                    "value": "${DB_OPERATIONS_USER}"
+                                  },
+                                  {
+                                    "name": "DB_OPERATIONS_PASSWORD",
+                                    "value": "${DB_OPERATIONS_PASSWORD}"
+                                  },
+                                    {
+                                        "name": "DB_DATABASE",
+                                        "value": "${DB_DATABASE}" 
+                                    },
+                                    {
+                                        "name": "DB_ROOT_PASSWORD",
+                                        "value": "${DB_ROOT_PASSWORD}"
+                                    }
+                                ],
+                                // "volumeMounts": [
+                                //     {
+                                //         "name": "${APP_NAME}-wpp-data",
+                                //         "mountPath": "/opt/app-root/src/wp-content"
+                                //     }
+                                // ]
+                            }
+                        ],
+                        // "volumes": [
+                        //     {
+                        //         "name": "${APP_NAME}-wpp-data",
+                        //         "persistentVolumeClaim": {
+                        //             "claimName": "${APP_NAME}-wpp-data"
+                        //         }
+                        //     }
+                        // ],
+                        "dnsPolicy": "ClusterFirst",
+                        "restartPolicy": "Always",
+                        "terminationGracePeriodSeconds": "30"
+                    }
+                }
+            }
+        }
+  ]
+}
