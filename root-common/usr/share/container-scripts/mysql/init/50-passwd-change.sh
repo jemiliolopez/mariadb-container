@@ -48,7 +48,8 @@ EOSQL
 }
 
 if ! [ -v MYSQL_RUNNING_AS_SLAVE ] ; then
-    # export MYSQL_PWD="$DB_ROOT_PASSWORD"
+    # export MYSQL_ROOT_PASSWORD="$DB_ROOT_PASSWORD"
+    export MYSQL_PWD="$MYSQL_ROOT_PASSWORD"
   password_change
 fi
 
