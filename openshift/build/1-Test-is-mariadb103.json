@@ -63,32 +63,32 @@
             "value": "docker-registry.default.svc:5000"
         },
         {
-            "name": "DB_USER",
+            "name": "MYSQL_USER",
             "description": "El nombre del host donde se encuentra la base de datos. Generalmente suele ser el nombre del servicio que expone la base de datos.",
             "value": "user"
         },
         {
-            "name": "DB_PASSWORD",
+            "name": "MYSQL_PASSWORD",
             "description": "Set the database collation.",
             "value": "passuser"
         },
         {
-            "name": "DB_OPERATIONS_USER",
+            "name": "MYSQL_OPERATIONS_USER",
             "description": "El nombre del host donde se encuentra la base de datos. Generalmente suele ser el nombre del servicio que expone la base de datos.",
             "value": "user"
         },
         {
-            "name": "DB_OPERATIONS_PASSWORD",
+            "name": "MYSQL_OPERATIONS_PASSWORD",
             "description": "Set the database collation.",
             "value": "passuser"
         },
         {
-            "name": "DB_DATABASE",
+            "name": "MYSQL_DATABASE",
             "description": "El nombre del host donde se encuentra la base de datos. Generalmente suele ser el nombre del servicio que expone la base de datos.",
             "value": "db"
         },
         {
-            "name": "DB_ROOT_PASSWORD",
+            "name": "MYSQL_ROOT_PASSWORD",
             "description": "Set the database collation.",
             "value": "passroot"
         }
@@ -138,28 +138,28 @@
                                 },
                                 "env": [
                                     {
-                                        "name": "DB_USER",
-                                        "value": "${DB_USER}"
+                                        "name": "MYSQL_USER",
+                                        "value": "${MYSQL_USER}"
                                     },
                                     {
-                                        "name": "DB_PASSWORD",
-                                        "value": "${DB_PASSWORD}"
+                                        "name": "MYSQL_PASSWORD",
+                                        "value": "${MYSQL_PASSWORD}"
                                     },
                                     {
-                                        "name": "DB_OPERATIONS_USER",
-                                        "value": "${DB_OPERATIONS_USER}"
+                                        "name": "MYSQL_OPERATIONS_USER",
+                                        "value": "${MYSQL_OPERATIONS_USER}"
                                     },
                                     {
-                                        "name": "DB_OPERATIONS_PASSWORD",
-                                        "value": "${DB_OPERATIONS_PASSWORD}"
+                                        "name": "MYSQL_OPERATIONS_PASSWORD",
+                                        "value": "${MYSQL_OPERATIONS_PASSWORD}"
                                     },
                                     {
-                                        "name": "DB_DATABASE",
-                                        "value": "${DB_DATABASE}"
+                                        "name": "MYSQL_DATABASE",
+                                        "value": "${MYSQL_DATABASE}"
                                     },
                                     {
-                                        "name": "DB_ROOT_PASSWORD",
-                                        "value": "${DB_ROOT_PASSWORD}"
+                                        "name": "MYSQL_ROOT_PASSWORD",
+                                        "value": "${MYSQL_ROOT_PASSWORD}"
                                     }
                                 ]
                             }
