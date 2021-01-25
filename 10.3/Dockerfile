@@ -59,7 +59,7 @@ ENV BASH_ENV=${CONTAINER_SCRIPTS_PATH}/scl_enable \
 
 
 
-ENV ENV=/etc/environment
+# ENV ENV=/etc/environment
 # ENV BASH_ENV=/etc/profile
 # RUN alias bash='bash --login'
 
