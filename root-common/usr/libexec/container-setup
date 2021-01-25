@@ -71,11 +71,11 @@ restorecon -R /var/lib/mysql
 # export ENV='/etc/environment'
 
 
-echo "unset DB_PASSWORD" >> '/etc/environment'
-echo "unset DB_ROOT_PASSWORD" >> '/etc/environment'
+# echo "unset DB_PASSWORD" >> '/etc/environment'
+# echo "unset DB_ROOT_PASSWORD" >> '/etc/environment'
 
 
-echo ". /etc/environment" > '/etc/bash.bashrc'
+# echo ". /etc/environment" > '/etc/bash.bashrc'
 
 # echo "alias bash='bash --login' 2>/dev/null" > '/etc/profile.d/my_bash.sh'
 
