@@ -145,7 +145,7 @@
             // "forcePull": true,
             "from": {
               "kind": "DockerImage", 
-              "name": "docker-registry.default.svc:5000/imagenes-wordpress/1-is-mariadb103:latest"
+              "name": "docker-registry.default.svc:5000/imagenes-wordpress/mia:latest"
             }, 
             "env": [
               //  {

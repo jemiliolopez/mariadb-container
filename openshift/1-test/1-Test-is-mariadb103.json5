@@ -165,7 +165,7 @@
                                     "name": "MYSQL_OPERATIONS_PASSWORD",
                                     "value": "${MYSQL_OPERATIONS_PASSWORD}"
                                   },
-                                    {
+                                    { 
                                         "name": "MYSQL_DATABASE",
                                         "value": "${MYSQL_DATABASE}" 
                                     },
