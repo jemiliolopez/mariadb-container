@@ -1,0 +1,162 @@
+{
+    "kind": "Template",
+    "apiVersion": "v1",
+    "metadata": {
+        "name": "Imagen mariadb10",
+        "annotations": {
+            "openshift.io/display-name": "imagen-mariadb10",
+            "description": "Creamos la imagen mysql  a partir de software collection. Después desplegamos.",
+            "tags": "wordpress,mysql"
+        },
+        "labels": {
+            "template": "wordpress-mysql"
+        }
+    },
+    "parameters": [
+        {
+            "name": "PROJECT_NAME",
+            "description": "Nombre del proyecto openshift para poder acceder a su registro de imágenes de docker.",
+            "value": "imagenes-wordpress"
+        },
+        {
+            "name": "APP_NAME",
+            "description": "Nombre de la aplicación.",
+            "value": "is-mariadb-10.3"
+        },
+        {
+            "name": "STRATEGY_TYPE",
+            "description": "Servicio de mysql.",
+            "value": "Source",
+            "required": true
+        },
+        {
+            "name": "SOURCE_IMAGE_STREAM",
+            "description": "Imagen stream desde la que se parte.",
+            "value": "docker-registry.default.svc:5000/imagenes-wordpress/is-0-mariadb-10.3"
+        },
+        {
+            "name": "SSH_GITHUB",
+            "description": "Servicio de mysql.",
+            "value": "github-secret-jemiliolopez",
+            "required": true
+        },
+        {
+            "name": "SOURCE_REPOSITORY_MYSQL_URL",
+            "description": "The URL of the quickstart Git repository.",
+            "value": "git@github.com:jemiliolopez/mysql-container.git",
+            "required": true
+        },
+        {
+            "name": "SOURCE_REPOSITORY_MYSQL_TAG",
+            "description": "The tagged version of the source repository to use.",
+            "value": "master",
+            "required": true
+        },
+        {
+            "name": "MYSQL_USER",
+            "description": "El nombre del host donde se encuentra la base de datos. Generalmente suele ser el nombre del servicio que expone la base de datos.",
+            "value": "user"
+        },
+        {
+            "name": "MYSQL_PASSWORD",
+            "description": "Set the database collation.",
+            "value": "passuser"
+        },
+        {
+            "name": "MYSQL_OPERATIONS_USER",
+            "description": "El nombre del host donde se encuentra la base de datos. Generalmente suele ser el nombre del servicio que expone la base de datos.",
+            "value": "ouser"
+        },
+        {
+            "name": "MYSQL_OPERATIONS_PASSWORD",
+            "description": "Set the database collation.",
+            "value": "opassuser"
+        },
+        {
+            "name": "MYSQL_DATABASE",
+            "description": "El nombre del host donde se encuentra la base de datos. Generalmente suele ser el nombre del servicio que expone la base de datos.",
+            "value": "db"
+        },
+        {
+            "name": "MYSQL_ROOT_PASSWORD",
+            "description": "Set the database collation.",
+            "value": "passroot"
+        }
+    ],
+    "objects": [
+        {
+            "kind": "ImageStream",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "${APP_NAME}",
+                "namespace": "${PROJECT_NAME}",
+                "labels": {
+                    "app": "${APP_NAME}",
+                    "app-service": "${APP_NAME}",
+                    "build": "${APP_NAME}"
+                }
+            }
+        },
+        {
+            "apiVersion": "build.openshift.io/v1",
+            "kind": "BuildConfig",
+            "metadata": {
+                "name": "${APP_NAME}",
+                "namespace": "${PROJECT_NAME}",
+                "labels": {
+                    "app": "${APP_NAME}",
+                    "app-service": "${APP_NAME}",
+                    "build": "${APP_NAME}"
+                }
+            },
+            "spec": {
+                "failedBuildsHistoryLimit": 5,
+                "nodeSelector": null,
+                "output": {
+                    "to": {
+                        "kind": "ImageStreamTag",
+                        "name": "${APP_NAME}:latest"
+                    }
+                },
+                "postCommit": {},
+                "resources": {},
+                "runPolicy": "Serial",
+                "source": {
+                    "sourceSecret": {
+                        "name": "${SSH_GITHUB}"
+                    },
+                    "type": "Git",
+                    "git": {
+                        "uri": "${SOURCE_REPOSITORY_MYSQL_URL}",
+                        "ref": "${SOURCE_REPOSITORY_MYSQL_TAG}"
+                    }
+                },
+                "strategy": {
+                    "type": "${STRATEGY_TYPE}",
+                    "dockerStrategy": {
+                        "dockerfilePath": "openshift/Final_Docker/Dockerfile",
+                        "from": {
+                            "kind": "DockerImage",
+                            "name": "docker-registry.default.svc:5000/imagenes-wordpress/1-is-mariadb103:latest"
+                        },
+                        "env": []
+                    }
+                },
+                "triggers": [
+                    {
+                        "generic": {
+                            "secret": "F-ilfroO9PAhjTRSWX67"
+                        },
+                        "type": "Generic"
+                    },
+                    {
+                        "type": "ConfigChange"
+                    },
+                    {
+                        "type": "ImageChange"
+                    }
+                ]
+            }
+        }
+    ]
+}

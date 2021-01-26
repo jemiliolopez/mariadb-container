@@ -1,0 +1,8 @@
+PROJECT_NAME="imagenes-wordpress"
+APP_NAME="2-is-mariadb103"
+# DOCKER_REGISTER= "docker-registry.default.svc:5000"
+# DB_USER="user" 
+# DB_PASSWORD="passuser" 
+# DB_DATABASE="db"
+# MYSQL_ROOT_PASSWORD="passroot"
+

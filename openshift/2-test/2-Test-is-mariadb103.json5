@@ -78,7 +78,7 @@
       "description": "El nombre del host donde se encuentra la base de datos. Generalmente suele ser el nombre del servicio que expone la base de datos.",
       "value": "user"
     },
-     {
+    { 
       "name": "MYSQL_OPERATIONS_PASSWORD",
       "description": "Set the database collation.",
       "value": "passuser"
@@ -143,7 +143,7 @@
                                 //         "protocol": "TCP"
                                 //     }
                                 // ],
-                                "resources": {
+                                "resources": { 
                                     "limits": {
                                         "memory": "512Mi"
                                     }

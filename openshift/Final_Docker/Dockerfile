@@ -1,11 +1,6 @@
-FROM wordpress-imagenes/is-1-mariadb-10-3
+FROM docker-registry.default.svc:5000/imagenes-wordpress/1-is-mariadb103:latest
 MAINTAINER Samy <samyunodos@gmail.com>
+ENV MYSQL_ROOT_PASSWORD=''
+ENV MYSQL_PASSWORD=''
 
-COPY ./openshift/Final_Docker/entrypoint.sh /bin
-
-RUN bash -c "unset MYSQL_ROOT_PASSWORD"
-
-
-# ENTRYPOINT [ "run-mysqld" ]
-
-CMD ["run-mysqld"]
+CMD ["/bin/bash"]
