@@ -134,6 +134,7 @@
                 "strategy": {
                     "type": "${STRATEGY_TYPE}",
                     "dockerStrategy": {
+                        "noCache": true,
                         "dockerfilePath": "openshift/Final_Docker/Dockerfile",
                         "from": {
                             "kind": "DockerImage",

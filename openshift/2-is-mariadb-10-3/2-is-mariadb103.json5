@@ -138,7 +138,8 @@
          },
         "strategy": {
           "type": "${STRATEGY_TYPE}", 
-          "dockerStrategy": { 
+          "dockerStrategy": {
+            "noCache": true,
             "dockerfilePath": "openshift/Final_Docker/Dockerfile",
             // "contextDir": "8.0/",
             // "forcePull": true,
