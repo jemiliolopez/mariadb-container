@@ -84,3 +84,6 @@ USER 27
 
 ENTRYPOINT ["container-entrypoint"]
 CMD ["run-mysqld"]
+
+ENV MYSQL_PASSWORD=''
+ENV MYSQL_ROOT_PASSWORD=''
