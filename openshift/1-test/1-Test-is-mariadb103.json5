@@ -186,8 +186,8 @@
                       },
                       {
                         "name": "${APP_NAME}-cfmap-volume",
-                        "secret": {
-                          "secretName": "${APP_NAME}-cfmap",
+                        "configMap": {
+                          "name": "${APP_NAME}-cfmap",
                           "defaultMode": "0440",
                           "items": [
                             {
