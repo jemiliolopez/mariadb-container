@@ -9,12 +9,11 @@ fi
 
 export_setting_variables
 
-while  [ ! -d '/etc/secrets' ]; do 
-   sleep 3;
-done
-while  [ ! -d '/etc/cfmap' ]; do 
-   sleep 3;
-done
+# #Espera a que se monte el sistema de archivos
+while  [  "$( mount | grep '/etc/secrets/mysql' > /dev/null)" ];do sleep 1;done
+while  [  "$( mount | grep '/etc/cfmap/mysql' > /dev/null)" ];do sleep 1;done
+
+
 
 MYSQL_ROOT_PASSWORD="$(cat /etc/secrets/mysql/mysql-root-password)"
 # MYSQL_PWD="$MYSQL_ROOT_PASSWORD"
