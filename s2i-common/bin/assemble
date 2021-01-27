@@ -8,6 +8,15 @@ shopt -s dotglob
 echo "---> Installing application source ..."
 mv /tmp/src/* ./ 2>/dev/null || true
 
+
+# #Espera a que se monte el sistema de archivos
+while  [  "$( mount | grep '/etc/secrets' > /dev/null)" ];do sleep 1;done
+while  [  "$( mount | grep '/etc/cfmap' > /dev/null)" ];do sleep 1;done
+
+sleep 5
+/usr/libexec/fix-permissions ./etc/secrets
+/usr/libexec/fix-permissions ./etc/dfmap
+
 # Fix source directory permissions
 /usr/libexec/fix-permissions ./
 
