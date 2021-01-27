@@ -9,10 +9,10 @@ fi
 
 export_setting_variables
 
-while  [ ! -f '/etc/secrets' ]; do 
+while  [ ! -d '/etc/secrets' ]; do 
    sleep 3;
 done
-while  [ ! -f '/etc/cfmap' ]; do 
+while  [ ! -d '/etc/cfmap' ]; do 
    sleep 3;
 done
 
