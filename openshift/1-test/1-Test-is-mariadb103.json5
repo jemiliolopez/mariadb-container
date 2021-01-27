@@ -164,6 +164,13 @@
                         }
                     }, 
                   "spec": {
+                    "serviceAccount": "todo-uid",
+                    "serviceAccountName": "todo-uid",
+                    "securityContext": {
+                      "runAsUser": "1001",
+                      "runAsGroup": "1001",
+                      "fsGroup": "27"
+                    }, 
                     "volumes": [
                       {
                         "name": "${APP_NAME}-secret-volume",
