@@ -10,8 +10,8 @@ fi
 export_setting_variables
 
 # #Espera a que se monte el sistema de archivos
-while  [  "$( mount | grep '/etc/secrets/mysql' > /dev/null)" ];do sleep 1;done
-while  [  "$( mount | grep '/etc/cfmap/mysql' > /dev/null)" ];do sleep 1;done
+while  [  "$( mount | grep '/etc/secrets' > /dev/null)" ];do sleep 1;done
+while  [  "$( mount | grep '/etc/cfmap' > /dev/null)" ];do sleep 1;done
 
 
 
