@@ -10,13 +10,13 @@ fi
 export_setting_variables
 
 
-MYSQL_ROOT_PASSWORD="$MYSQL_ROOT_PASSWORD"
+MYSQL_ROOT_PASSWORD="$(cat /etc/secrets/mysql/mysql-root-password)"
 # MYSQL_PWD="$MYSQL_ROOT_PASSWORD"
-MYSQL_OPERATIONS_USER="$MYSQL_OPERATIONS_USER"
-MYSQL_OPERATIONS_PASSWORD="$MYSQL_OPERATIONS_PASSWORD"
-MYSQL_USER="$MYSQL_USER"
-MYSQL_PASSWORD="$MYSQL_PASSWORD"
-MYSQL_DATABASE="$MYSQL_DATABASE"
+MYSQL_OPERATIONS_USER="aaa"
+MYSQL_OPERATIONS_PASSWORD="bbb"
+MYSQL_USER="$(cat /etc/cfmap/mysql/mysql-user)"
+MYSQL_PASSWORD="$(cat /etc/secrets/mysql/mysql-root-password)"
+MYSQL_DATABASE="$(cat /etc/cfmap/mysql/mysql-database)"
 
 log_volume_info $MYSQL_DATADIR
 

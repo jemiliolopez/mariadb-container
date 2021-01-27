@@ -95,7 +95,42 @@
     }
     
   ],
-  "objects": [
+   "objects": [
+     {  
+       "kind": "Secret",
+       "apiVersion": "v1",
+       "metadata": {
+         "name": "${APP_NAME}-secret",
+         "namespace": "${PROJECT_NAME}",
+         "labels": {
+           "app": "${APP_NAME}",
+           "app-service": "${APP_NAME}",
+           "build": "${APP_NAME}"
+         }
+       },
+       "type": "Opaque",
+       "stringData": {
+         "mysql.password": "amigo",
+         "mysql.root.password": "enemigo",
+       }
+     },
+     {
+       "kind": "ConfigMap",
+       "apiVersion": "v1",
+       "metadata": {
+         "name": "${APP_NAME}-cfmap",
+         "namespace": "${PROJECT_NAME}",
+         "labels": {
+           "app": "${APP_NAME}",
+           "app-service": "${APP_NAME}",
+           "build": "${APP_NAME}"
+         }
+       },
+       "data": {
+         "mysql.user": "gente",
+         "mysql.database": "puedeser",
+       }
+     },
      {
             "kind": "DeploymentConfig",
             "apiVersion": "v1",
@@ -128,7 +163,47 @@
                             "deployconfig": "${APP_NAME}"
                         }
                     }, 
-                    "spec": {
+                  "spec": {
+                    "volumes": [
+                      {
+                        "name": "${APP_NAME}-secret-volume",
+                        "secret": {
+                          "secretName": "${APP_NAME}-secret",
+                          "defaultMode": "0440",
+                          "items": [
+                            {
+                              "key": "mysql.password",
+                              "path": "mysql/mysql-password ",
+                              "mode": "0440"
+                            },
+                            {
+                              "key": "mysql.root.password",
+                              "path": "mysql/mysql-root-password ",
+                              "mode": "0440"
+                            },
+                          ]
+                        }
+                      },
+                      {
+                        "name": "${APP_NAME}-cfmap-volume",
+                        "secret": {
+                          "secretName": "${APP_NAME}-cfmap",
+                          "defaultMode": "0440",
+                          "items": [
+                            {
+                              "key": "mysql.user",
+                              "path": "mysql/mysql-user",
+                              "mode": "0440"
+                            },
+                            {
+                              "key": "mysql.database",
+                              "path": "mysql/mysql-database",
+                              "mode": "0440"
+                            }
+                          ]
+                        }
+                      }
+                    ],
                         "containers": [
                             {
                                 "name": "${APP_NAME}",
@@ -149,37 +224,45 @@
                                     }
                                 },
                                 "env": [
-                                    {
-                                        "name": "MYSQL_USER",
-                                        "value": "${MYSQL_USER}"
-                                    },
-                                    {
-                                        "name": "MYSQL_PASSWORD",
-                                        "value": "${MYSQL_PASSWORD}"
-                                    },
-                                  {
-                                    "name": "MYSQL_OPERATIONS_USER",
-                                    "value": "${MYSQL_OPERATIONS_USER}"
-                                  },
-                                  {
-                                    "name": "MYSQL_OPERATIONS_PASSWORD",
-                                    "value": "${MYSQL_OPERATIONS_PASSWORD}"
-                                  },
-                                    { 
-                                        "name": "MYSQL_DATABASE",
-                                        "value": "${MYSQL_DATABASE}" 
-                                    },
-                                    {
-                                        "name": "MYSQL_ROOT_PASSWORD",
-                                        "value": "${MYSQL_ROOT_PASSWORD}"
-                                    }
+                                  //   {
+                                  //       "name": "MYSQL_USER",
+                                  //       "value": "${MYSQL_USER}"
+                                  //   },
+                                  //   {
+                                  //       "name": "MYSQL_PASSWORD",
+                                  //       "value": "${MYSQL_PASSWORD}"
+                                  //   },
+                                  // {
+                                  //   "name": "MYSQL_OPERATIONS_USER",
+                                  //   "value": "${MYSQL_OPERATIONS_USER}"
+                                  // },
+                                  // {
+                                  //   "name": "MYSQL_OPERATIONS_PASSWORD",
+                                  //   "value": "${MYSQL_OPERATIONS_PASSWORD}"
+                                  // },
+                                  //   { 
+                                  //       "name": "MYSQL_DATABASE",
+                                  //       "value": "${MYSQL_DATABASE}" 
+                                  //   },
+                                  //   {
+                                  //       "name": "MYSQL_ROOT_PASSWORD",
+                                  //       "value": "${MYSQL_ROOT_PASSWORD}"
+                                  //   }
                                 ],
-                                // "volumeMounts": [
+                              "volumeMounts": [
                                 //     {
                                 //         "name": "${APP_NAME}-wpp-data",
                                 //         "mountPath": "/opt/app-root/src/wp-content"
-                                //     }
-                                // ]
+                              //     }
+                                {
+                                  "name": "${APP_NAME}-secret-volume",
+                                  "mountPath": "/etc/secrets",
+                                },
+                                {
+                                  "name": "${APP_NAME}-cfmap-volume",
+                                  "mountPath": "/etc/cfmap",
+                                }
+                              ]
                             }
                         ],
                         // "volumes": [
