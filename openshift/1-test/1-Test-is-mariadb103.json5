@@ -169,7 +169,7 @@
                         "name": "${APP_NAME}-secret-volume",
                         "secret": {
                           "secretName": "${APP_NAME}-secret",
-                          "defaultMode": "0440",
+                          // "defaultMode": "0440",
                           "items": [
                             {
                               "key": "mysql.password",
@@ -188,7 +188,7 @@
                         "name": "${APP_NAME}-cfmap-volume",
                         "configMap": {
                           "name": "${APP_NAME}-cfmap",
-                          "defaultMode": "0440",
+                          // "defaultMode": "0440",
                           "items": [
                             {
                               "key": "mysql.user",
