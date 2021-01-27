@@ -166,7 +166,7 @@
                         "serviceAccountName": "todo-uid",
                         "securityContext": {
                             "runAsUser": "1001",
-                            "runAsGroup": "1001",
+                            "runAsGroup": "27",
                             "fsGroup": "27"
                         },
                         "volumes": [
