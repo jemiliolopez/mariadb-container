@@ -13,15 +13,15 @@ export_setting_variables
 while  [  "$( mount | grep '/etc/secrets' > /dev/null)" ];do sleep 1;done
 while  [  "$( mount | grep '/etc/cfmap' > /dev/null)" ];do sleep 1;done
 
+sleep 5
 
-
-MYSQL_ROOT_PASSWORD="$(cat /etc/secrets/mysql/mysql-root-password)"
+MYSQL_ROOT_PASSWORD="$(cat '/etc/secrets/mysql/mysql-root-password')"
 # MYSQL_PWD="$MYSQL_ROOT_PASSWORD"
 MYSQL_OPERATIONS_USER="aaa"
 MYSQL_OPERATIONS_PASSWORD="bbb"
-MYSQL_USER="$(cat /etc/cfmap/mysql/mysql-user)"
-MYSQL_PASSWORD="$(cat /etc/secrets/mysql/mysql-password)"
-MYSQL_DATABASE="$(cat /etc/cfmap/mysql/mysql-database)"
+MYSQL_USER="$(cat '/etc/cfmap/mysql/mysql-user')"
+MYSQL_PASSWORD="$(cat '/etc/secrets/mysql/mysql-password')"
+MYSQL_DATABASE="$(cat '/etc/cfmap/mysql/mysql-database')"
 
 log_volume_info $MYSQL_DATADIR
 
