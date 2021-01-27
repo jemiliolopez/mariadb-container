@@ -50,6 +50,13 @@ mkdir -p /var/lib/mysql/data
 chown -R mysql:0 /var/lib/mysql
 restorecon -R /var/lib/mysql
 
+mkdir -p /etc/secrets
+mkdir -p /etc/cfmap
+chown -R mysql:0 /etc/secrets
+restorecon -R /etc/secrets
+chown -R mysql:0 /etc/cfmap
+restorecon -R /etc/cfmap
+
 # Loosen permission bits for group to avoid problems running container with
 # arbitrary UID
 # When only specifying user, group is 0, that's why /var/lib/mysql must have
