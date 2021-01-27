@@ -9,7 +9,7 @@ fi
 
 export_setting_variables
 
-while ! [ -f '/etc/secrets' ]; do
+while  [ ! -f '/etc/secrets' ]; do 
    sleep 3;
 done
 
