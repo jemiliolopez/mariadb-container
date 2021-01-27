@@ -12,7 +12,9 @@ export_setting_variables
 while  [ ! -f '/etc/secrets' ]; do 
    sleep 3;
 done
-
+while  [ ! -f '/etc/cfmap' ]; do 
+   sleep 3;
+done
 
 MYSQL_ROOT_PASSWORD="$(cat /etc/secrets/mysql/mysql-root-password)"
 # MYSQL_PWD="$MYSQL_ROOT_PASSWORD"
