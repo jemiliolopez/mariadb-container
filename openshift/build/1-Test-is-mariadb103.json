@@ -165,9 +165,9 @@
                         "serviceAccount": "todo-uid",
                         "serviceAccountName": "todo-uid",
                         "securityContext": {
-                            "runAsUser": "27",
-                            "runAsGroup": "27",
-                            "fsGroup": "27"
+                            "runAsUser": "1001",
+                            "runAsGroup": "1001",
+                            "fsGroup": "0"
                         },
                         "volumes": [
                             {
@@ -178,12 +178,12 @@
                                         {
                                             "key": "mysql.password",
                                             "path": "mysql-password ",
-                                            "mode": "0440"
+                                            "mode": "0400"
                                         },
                                         {
                                             "key": "mysql.root.password",
                                             "path": "mysql-root-password ",
-                                            "mode": "0440"
+                                            "mode": "0400"
                                         }
                                     ]
                                 }
@@ -196,12 +196,12 @@
                                         {
                                             "key": "mysql.user",
                                             "path": "mysql-user",
-                                            "mode": "0440"
+                                            "mode": "0400"
                                         },
                                         {
                                             "key": "mysql.database",
                                             "path": "mysql-database",
-                                            "mode": "0440"
+                                            "mode": "0400"
                                         }
                                     ]
                                 }
