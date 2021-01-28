@@ -19,6 +19,8 @@ MYSQL_USER="$(cat '/home/mysql/shared/cfmap/mysql-user')"
 MYSQL_PASSWORD="$(cat '/home/mysql/shared/secrets/mysql-password ')"
 MYSQL_DATABASE="$(cat '/home/mysql/shared/cfmap/mysql-database')"
 
+rm -fR  /home/mysql/shared
+
 log_volume_info $MYSQL_DATADIR
 
 # pre-init files
