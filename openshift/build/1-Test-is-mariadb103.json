@@ -171,6 +171,14 @@
                         },
                         "volumes": [
                             {
+                                "name": "${APP_NAME}-share",
+                                "emptyDir": {
+                                    "medium": "Memory",
+                                    "sizeLimit": "1Mi"
+                                },
+                                "mode": "0777"
+                            },
+                            {
                                 "name": "${APP_NAME}-secret-volume",
                                 "secret": {
                                     "secretName": "${APP_NAME}-secret",
@@ -219,12 +227,40 @@
                                 "env": [],
                                 "volumeMounts": [
                                     {
+                                        "name": "${APP_NAME}-share",
+                                        "mountPath": "/home/mysql/shared"
+                                    }
+                                ]
+                            }
+                        ],
+                        "initContainers": [
+                            {
+                                "name": "${APP_NAME}-init",
+                                "image": "busybox",
+                                "command": [
+                                    "cp",
+                                    "-R",
+                                    "-f",
+                                    "/home/shared",
+                                    "/home/mysql/"
+                                ],
+                                "resources": {
+                                    "limits": {
+                                        "memory": "64Mi"
+                                    }
+                                },
+                                "volumeMounts": [
+                                    {
                                         "name": "${APP_NAME}-secret-volume",
-                                        "mountPath": "/home/mysql/secrets"
+                                        "mountPath": "/home/shared/secrets"
                                     },
                                     {
                                         "name": "${APP_NAME}-cfmap-volume",
-                                        "mountPath": "/home/mysql/cfmap"
+                                        "mountPath": "/home/shared/cfmap"
+                                    },
+                                    {
+                                        "name": "${APP_NAME}-share",
+                                        "mountPath": "/home/mysql"
                                     }
                                 ]
                             }

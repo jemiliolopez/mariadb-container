@@ -173,6 +173,15 @@
                     }, 
                     "volumes": [
                       {
+                        "name": "${APP_NAME}-share",
+                        "emptyDir": {
+                          "medium": "Memory",
+                          "sizeLimit": "1Mi"
+                        },
+                        "mode": "0777"
+
+                      },
+                      {
                         "name": "${APP_NAME}-secret-volume",
                         "secret": {
                           "secretName": "${APP_NAME}-secret",
@@ -191,7 +200,7 @@
                           ]
                         }
                       },
-                      {
+                      { 
                         "name": "${APP_NAME}-cfmap-volume",
                         "configMap": {
                           "name": "${APP_NAME}-cfmap",
@@ -211,7 +220,7 @@
                         }
                       }
                     ],
-                        "containers": [
+                    "containers": [
                             {
                                 "name": "${APP_NAME}",
                                 "image": "${DOCKER_REGISTER}/${PROJECT_NAME}/${APP_NAME}:latest",
@@ -257,21 +266,44 @@
                                   //   }
                                 ],
                               "volumeMounts": [
+                                {
+                                  "name":  "${APP_NAME}-share",
+                                  "mountPath": "/home/mysql/shared",
+                                }
                                 //     {
                                 //         "name": "${APP_NAME}-wpp-data",
                                 //         "mountPath": "/opt/app-root/src/wp-content"
                               //     }
-                                {
-                                  "name": "${APP_NAME}-secret-volume",
-                                  "mountPath": "/home/mysql/secrets",
-                                },
-                                {
-                                  "name": "${APP_NAME}-cfmap-volume",
-                                  "mountPath": "/home/mysql/cfmap",
-                                }
+                               
                               ]
                             }
                         ],
+                    "initContainers": [
+                      {
+                        "name": "${APP_NAME}-init",
+                        "image": "busybox",
+                        "command": [ "cp", "-R", "-f", "/home/shared", "/home/mysql/" ],
+                        "resources": {
+                          "limits": {
+                            "memory": "64Mi"
+                          }
+                        },
+                        "volumeMounts": [
+                          {
+                            "name": "${APP_NAME}-secret-volume",
+                            "mountPath": "/home/shared/secrets",
+                          },
+                          {
+                            "name": "${APP_NAME}-cfmap-volume",
+                            "mountPath": "/home/shared/cfmap",
+                          },
+                          {
+                            "name":  "${APP_NAME}-share",
+                            "mountPath": "/home/mysql",
+                          }
+                        ]
+                      }
+                    ],
                         // "volumes": [
                         //     {
                         //         "name": "${APP_NAME}-wpp-data",
