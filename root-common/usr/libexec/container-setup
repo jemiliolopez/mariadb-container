@@ -62,7 +62,7 @@ restorecon -R /home/mysql/secrets
 chown -R mysql:mysql /home/mysql/cfmap
 restorecon -R /home/mysql/cfmap
 
-addgroup --gid 1001 usuario
+groupadd --gid 1001 default
 # /usr/libexec/fix-permissions /home/mysql
 
 
