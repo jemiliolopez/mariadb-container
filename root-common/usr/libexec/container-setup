@@ -62,7 +62,7 @@ restorecon -R /home/mysql/secrets
 chown -R mysql:0 /home/mysql/cfmap
 restorecon -R /home/mysql/cfmap
 
-/usr/libexec/fix-permissions /home/mysql
+# /usr/libexec/fix-permissions /home/mysql
 
 
 # Loosen permission bits for group to avoid problems running container with
