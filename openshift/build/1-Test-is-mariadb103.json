@@ -177,12 +177,12 @@
                                     "items": [
                                         {
                                             "key": "mysql.password",
-                                            "path": "secrets/mysql-password ",
+                                            "path": "mysql-password ",
                                             "mode": "0440"
                                         },
                                         {
                                             "key": "mysql.root.password",
-                                            "path": "secrets/mysql-root-password ",
+                                            "path": "mysql-root-password ",
                                             "mode": "0440"
                                         }
                                     ]
@@ -195,12 +195,12 @@
                                     "items": [
                                         {
                                             "key": "mysql.user",
-                                            "path": "cfmap/mysql-user",
+                                            "path": "mysql-user",
                                             "mode": "0440"
                                         },
                                         {
                                             "key": "mysql.database",
-                                            "path": "cfmap/mysql-database",
+                                            "path": "mysql-database",
                                             "mode": "0440"
                                         }
                                     ]
@@ -220,11 +220,11 @@
                                 "volumeMounts": [
                                     {
                                         "name": "${APP_NAME}-secret-volume",
-                                        "mountPath": "/home/mysql"
+                                        "mountPath": "/home/mysql/secrets"
                                     },
                                     {
                                         "name": "${APP_NAME}-cfmap-volume",
-                                        "mountPath": "/home/mysql"
+                                        "mountPath": "/home/mysql/cfmap"
                                     }
                                 ]
                             }
