@@ -227,7 +227,7 @@
                                 "volumeMounts": [
                                     {
                                         "name": "${APP_NAME}-share",
-                                        "mountPath": "/home/mysql/shared"
+                                        "mountPath": "/home/mysql"
                                     }
                                 ]
                             }
@@ -241,7 +241,7 @@
                                     "-R",
                                     "-f",
                                     "/home/shared",
-                                    "/home/mysql/"
+                                    "/home/mysql"
                                 ],
                                 "resources": {
                                     "limits": {

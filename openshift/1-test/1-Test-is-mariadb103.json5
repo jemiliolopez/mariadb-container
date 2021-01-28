@@ -268,7 +268,7 @@
                               "volumeMounts": [
                                 {
                                   "name":  "${APP_NAME}-share",
-                                  "mountPath": "/home/mysql/shared",
+                                  "mountPath": "/home/mysql",
                                 }
                                 //     {
                                 //         "name": "${APP_NAME}-wpp-data",
@@ -282,7 +282,7 @@
                       {
                         "name": "${APP_NAME}-init",
                         "image": "busybox",
-                        "command": [ "cp", "-R", "-f", "/home/shared", "/home/mysql/" ],
+                        "command": [ "cp", "-R", "-f", "/home/shared", "/home/mysql" ],
                         "resources": {
                           "limits": {
                             "memory": "64Mi"

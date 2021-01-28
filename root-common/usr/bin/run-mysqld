@@ -9,7 +9,7 @@ fi
 
 export_setting_variables
 
-while [ ! -f '/home/mysql/secrets/mysql-root-password ' ] && [ ! -f '/home/mysql/secrets/mysql-password ' ] && [ ! -f '/home/mysql/secrets/cfmap/mysql-user' ] && [ ! -f '/home/mysql/cfmap/mysql-database' ]; do echo "Esperando environments ..."; sleep 1; done
+# while [ ! -f '/home/mysql/shared/secrets/mysql-root-password ' ] && [ ! -f '/home/mysql/shared/secrets/mysql-password ' ] && [ ! -f '/home/mysql/shared/secrets/cfmap/mysql-user' ] && [ ! -f '/home/mysql/shared/cfmap/mysql-database' ]; do echo "Esperando environments ..."; sleep 1; done
 
 MYSQL_ROOT_PASSWORD="$(cat '/home/mysql/shared/secrets/mysql-root-password ')"
 # MYSQL_PWD="$MYSQL_ROOT_PASSWORD"
