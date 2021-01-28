@@ -173,8 +173,7 @@
                             {
                                 "name": "${APP_NAME}-share",
                                 "emptyDir": {
-                                    "medium": "Memory",
-                                    "sizeLimit": "1Mi"
+                                    "medium": "Memory"
                                 },
                                 "mode": "0777"
                             },
