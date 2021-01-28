@@ -180,12 +180,12 @@
                           "items": [
                             {
                               "key": "mysql.password",
-                              "path": "mysql/mysql-password ",
+                              "path": "secrets/mysql-password ",
                               "mode": "0440"
                             },
                             {
                               "key": "mysql.root.password",
-                              "path": "mysql/mysql-root-password ",
+                              "path": "secrets/mysql-root-password ",
                               "mode": "0440"
                             },
                           ]
@@ -199,12 +199,12 @@
                           "items": [
                             {
                               "key": "mysql.user",
-                              "path": "mysql/mysql-user",
+                              "path": "cfmap/mysql-user",
                               "mode": "0440"
                             },
                             {
                               "key": "mysql.database",
-                              "path": "mysql/mysql-database",
+                              "path": "cfmap/mysql-database",
                               "mode": "0440"
                             }
                           ]
@@ -263,11 +263,11 @@
                               //     }
                                 {
                                   "name": "${APP_NAME}-secret-volume",
-                                  "mountPath": "/etc/secrets",
+                                  "mountPath": "/home/mysql",
                                 },
                                 {
                                   "name": "${APP_NAME}-cfmap-volume",
-                                  "mountPath": "/etc/cfmap",
+                                  "mountPath": "/home/mysql",
                                 }
                               ]
                             }

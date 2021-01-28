@@ -50,12 +50,18 @@ mkdir -p /var/lib/mysql/data
 chown -R mysql:0 /var/lib/mysql
 restorecon -R /var/lib/mysql
 
-mkdir -p /home/mysql/secrets
-mkdir -p /home/mysql/cfmap
-chown -R mysql:0 /home/mysql/secrets
-restorecon -R /home/mysql/secrets
-chown -R mysql:0 /home/mysql/cfmap
-restorecon -R /home/mysql/cfmap
+
+mkdir -p /home/mysql
+chown -R mysql:0 /home/mysql
+restorecon -R /home/mysql
+
+# mkdir -p /home/mysql/secrets
+# mkdir -p /home/mysql/cfmap
+# chown -R mysql:0 /home/mysql/secrets
+# restorecon -R /home/mysql/secrets
+# chown -R mysql:0 /home/mysql/cfmap
+# restorecon -R /home/mysql/cfmap
+
 /usr/libexec/fix-permissions /home/mysql
 
 
