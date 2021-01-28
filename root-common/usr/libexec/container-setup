@@ -50,12 +50,14 @@ mkdir -p /var/lib/mysql/data
 chown -R mysql:0 /var/lib/mysql
 restorecon -R /var/lib/mysql
 
-mkdir -p /etc/secrets
-mkdir -p /etc/cfmap
-chown -R mysql:0 /etc/secrets
-restorecon -R /etc/secrets
-chown -R mysql:0 /etc/cfmap
-restorecon -R /etc/cfmap
+mkdir -p /home/mysql/secrets
+mkdir -p /home/mysql/cfmap
+chown -R mysql:0 /home/mysql/secrets
+restorecon -R /home/mysql/secrets
+chown -R mysql:0 /home/mysql/cfmap
+restorecon -R /home/mysql/cfmap
+/usr/libexec/fix-permissions /home/mysql
+
 
 # Loosen permission bits for group to avoid problems running container with
 # arbitrary UID
