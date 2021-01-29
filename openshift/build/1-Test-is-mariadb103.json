@@ -227,7 +227,7 @@
                                 "volumeMounts": [
                                     {
                                         "name": "${APP_NAME}-share",
-                                        "mountPath": "/home/mysql"
+                                        "mountPath": "/tmp/mysql"
                                     }
                                 ]
                             }
@@ -240,8 +240,8 @@
                                     "cp",
                                     "-R",
                                     "-f",
-                                    "/home/shared",
-                                    "/home/mysql"
+                                    "/tmp/shared",
+                                    "/tmp/mysql"
                                 ],
                                 "resources": {
                                     "limits": {
@@ -251,15 +251,15 @@
                                 "volumeMounts": [
                                     {
                                         "name": "${APP_NAME}-secret-volume",
-                                        "mountPath": "/home/shared/secrets"
+                                        "mountPath": "/tmp/shared/secrets"
                                     },
                                     {
                                         "name": "${APP_NAME}-cfmap-volume",
-                                        "mountPath": "/home/shared/cfmap"
+                                        "mountPath": "/tmp/shared/cfmap"
                                     },
                                     {
                                         "name": "${APP_NAME}-share",
-                                        "mountPath": "/home/mysql"
+                                        "mountPath": "/tmp/mysql"
                                     }
                                 ]
                             }

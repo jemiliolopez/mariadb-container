@@ -11,13 +11,13 @@ export_setting_variables
 
 # while [ ! -f '/home/mysql/shared/secrets/mysql-root-password ' ] && [ ! -f '/home/mysql/shared/secrets/mysql-password ' ] && [ ! -f '/home/mysql/shared/secrets/cfmap/mysql-user' ] && [ ! -f '/home/mysql/shared/cfmap/mysql-database' ]; do echo "Esperando environments ..."; sleep 1; done
 
-MYSQL_ROOT_PASSWORD="$(cat '/home/mysql/shared/secrets/mysql-root-password ')"
+MYSQL_ROOT_PASSWORD="$(cat '/tmp/mysql/shared/secrets/mysql-root-password ')"
 # MYSQL_PWD="$MYSQL_ROOT_PASSWORD"
 MYSQL_OPERATIONS_USER="aaa"
 MYSQL_OPERATIONS_PASSWORD="bbb"
-MYSQL_USER="$(cat '/home/mysql/shared/cfmap/mysql-user')"
-MYSQL_PASSWORD="$(cat '/home/mysql/shared/secrets/mysql-password ')"
-MYSQL_DATABASE="$(cat '/home/mysql/shared/cfmap/mysql-database')"
+MYSQL_USER="$(cat '/tmp/mysql/shared/cfmap/mysql-user')"
+MYSQL_PASSWORD="$(cat '/tmp/mysql/shared/secrets/mysql-password ')"
+MYSQL_DATABASE="$(cat '/tmp/mysql/shared/cfmap/mysql-database')"
 
 rm -fR  /home/mysql/shared
 
