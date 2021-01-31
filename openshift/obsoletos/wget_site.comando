@@ -1,0 +1,6 @@
+
+wget --user user --password pass --recursive --no-clobber --page-requisites --html-extension --convert-links --restrict-file-names=windows --domains website.org --no-parent www.website.org/tutorials/html/
+
+
+
+wget --user mmaramini@gmail.com --password calasparra123 --recursive --no-clobber --page-requisites --html-extension --convert-links --restrict-file-names=windows --domains domestika.org --no-parent www.domestika.org/es/courses/454-confeccion-de-ropa-miniatura/
