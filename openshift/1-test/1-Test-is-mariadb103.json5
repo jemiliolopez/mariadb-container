@@ -111,7 +111,7 @@
        "type": "Opaque",
        "stringData": {
          "mysql.password": "pass-user",
-         "mysql.operations.password": "pass-op-user",
+         // "mysql.operations.password": "pass-op-user",
          "mysql.root.password": "pass-root",
        }
      },
@@ -129,7 +129,7 @@
        },
        "data": {
          "mysql.user": "user",
-         "mysql.operations.user": "op-user",
+         // "mysql.operations.user": "op-user",
          "mysql.database": "database",
        }
      },
@@ -194,11 +194,11 @@
                               "path": "mysql-password",
                               "mode": "0400"
                             },
-                            {
-                              "key": "mysql.operations.password",
-                              "path": "mysql-operations-password",
-                              "mode": "0400"
-                            },
+                            // {
+                            //   "key": "mysql.operations.password",
+                            //   "path": "mysql-operations-password",
+                            //   "mode": "0400"
+                            // },
                             {
                               "key": "mysql.root.password",
                               "path": "mysql-root-password",
@@ -218,11 +218,11 @@
                               "path": "mysql-user",
                               "mode": "0400"
                             },
-                            {
-                              "key": "mysql.operations.user",
-                              "path": "mysql-operations-user",
-                              "mode": "0400"
-                            },
+                            // {
+                            //   "key": "mysql.operations.user",
+                            //   "path": "mysql-operations-user",
+                            //   "mode": "0400"
+                            // },
                             {
                               "key": "mysql.database",
                               "path": "mysql-database",

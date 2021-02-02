@@ -1,7 +1,5 @@
 get-variables() {
     export MYSQL_ROOT_PASSWORD="$(cat '/tmp/mysql/shared/secrets/mysql-root-password')"
-    # export MYSQL_OPERATIONS_USER="$(cat '/tmp/mysql/shared/cfmap/mysql-operations-user')"
-    # export MYSQL_OPERATIONS_PASSWORD="$(cat '/tmp/mysql/shared/secrets/mysql-operations-password')"
     export MYSQL_USER="$(cat '/tmp/mysql/shared/cfmap/mysql-user')"
     export MYSQL_PASSWORD="$(cat '/tmp/mysql/shared/secrets/mysql-password')"
     export MYSQL_DATABASE="$(cat '/tmp/mysql/shared/cfmap/mysql-database')"

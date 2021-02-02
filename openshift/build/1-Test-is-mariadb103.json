@@ -109,7 +109,6 @@
             "type": "Opaque",
             "stringData": {
                 "mysql.password": "pass-user",
-                "mysql.operations.password": "pass-op-user",
                 "mysql.root.password": "pass-root"
             }
         },
@@ -127,7 +126,6 @@
             },
             "data": {
                 "mysql.user": "user",
-                "mysql.operations.user": "op-user",
                 "mysql.database": "database"
             }
         },
@@ -190,11 +188,6 @@
                                             "mode": "0400"
                                         },
                                         {
-                                            "key": "mysql.operations.password",
-                                            "path": "mysql-operations-password",
-                                            "mode": "0400"
-                                        },
-                                        {
                                             "key": "mysql.root.password",
                                             "path": "mysql-root-password",
                                             "mode": "0400"
@@ -210,11 +203,6 @@
                                         {
                                             "key": "mysql.user",
                                             "path": "mysql-user",
-                                            "mode": "0400"
-                                        },
-                                        {
-                                            "key": "mysql.operations.user",
-                                            "path": "mysql-operations-user",
                                             "mode": "0400"
                                         },
                                         {
