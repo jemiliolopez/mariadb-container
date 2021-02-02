@@ -1,0 +1,52 @@
+{
+    "allowHostDirVolumePlugin": false,
+    "allowHostIPC": false,
+    "allowHostNetwork": false,
+    "allowHostPID": false,
+    "allowHostPorts": false,
+    "allowPrivilegeEscalation": true,
+    "allowPrivilegedContainer": false,
+    "allowedCapabilities": null,
+    "apiVersion": "security.openshift.io/v1",
+    "defaultAddCapabilities": null,
+    "fsGroup": {
+        "type": "RunAsAny"
+    },
+    "groups": [
+        "system:cluster-admins"
+    ],
+    "kind": "SecurityContextConstraints",
+    "metadata": {
+        "annotations": {
+            "kubernetes.io/description": "anyuid provides all features of the restricted SCC but allows users to run with any UID and any GID."
+        },
+        "creationTimestamp": "2021-01-02T18:32:59Z",
+        "name": "anyuid",
+        "resourceVersion": "77",
+        "selfLink": "/apis/security.openshift.io/v1/securitycontextconstraints/anyuid",
+        "uid": "f09eb6a8-4d28-11eb-92f9-525400387520"
+    },
+    "priority": 10,
+    "readOnlyRootFilesystem": false,
+    "requiredDropCapabilities": [
+        "MKNOD"
+    ],
+    "runAsUser": {
+        "type": "RunAsAny"
+    },
+    "seLinuxContext": {
+        "type": "MustRunAs"
+    },
+    "supplementalGroups": {
+        "type": "RunAsAny"
+    },
+    "users": [],
+    "volumes": [
+        "configMap",
+        "downwardAPI",
+        "emptyDir",
+        "persistentVolumeClaim",
+        "projected",
+        "secret"
+    ]
+}

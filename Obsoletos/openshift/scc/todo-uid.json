@@ -1,0 +1,25 @@
+{
+    "apiVersion": "v1",
+    "imagePullSecrets": [
+        {
+            "name": "todo-uid-dockercfg-qt2hg"
+        }
+    ],
+    "kind": "ServiceAccount",
+    "metadata": {
+        "creationTimestamp": "2021-01-15T18:59:24Z",
+        "name": "todo-uid",
+        "namespace": "imagenes-wordpress",
+        "resourceVersion": "595202",
+        "selfLink": "/api/v1/namespaces/imagenes-wordpress/serviceaccounts/todo-uid",
+        "uid": "c8a89db8-5763-11eb-89db-525400a67adf"
+    },
+    "secrets": [
+        {
+            "name": "todo-uid-token-6dw75"
+        },
+        {
+            "name": "todo-uid-dockercfg-qt2hg"
+        }
+    ]
+}

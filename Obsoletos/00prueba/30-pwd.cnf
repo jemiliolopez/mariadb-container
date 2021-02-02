@@ -1,0 +1,11 @@
+[mysql]
+user=root
+password="passroot"
+
+[mysqld]
+user=root
+password="passroot"
+
+[mysqladmin]
+user=root
+password="passroot"
