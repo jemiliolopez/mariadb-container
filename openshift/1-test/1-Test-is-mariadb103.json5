@@ -224,6 +224,11 @@
                             //   "mode": "0400"
                             // },
                             {
+                              "key": "mysql.operations.user",
+                              "path": "mysql-operations-user",
+                              "mode": "0400"
+                            },
+                            {
                               "key": "mysql.database",
                               "path": "mysql-database",
                               "mode": "0400"
