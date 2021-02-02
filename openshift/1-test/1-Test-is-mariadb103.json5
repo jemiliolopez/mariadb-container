@@ -110,8 +110,9 @@
        },
        "type": "Opaque",
        "stringData": {
-         "mysql.password": "amigo",
-         "mysql.root.password": "enemigo",
+         "mysql.password": "pass-user",
+         "mysql.operations.password": "pass-op-user",
+         "mysql.root.password": "pass-root",
        }
      },
      {
@@ -127,8 +128,9 @@
          }
        },
        "data": {
-         "mysql.user": "gente",
-         "mysql.database": "puedeser",
+         "mysql.user": "user",
+         "mysql.operations.user": "op-user",
+         "mysql.database": "database",
        }
      },
      {
@@ -189,12 +191,17 @@
                           "items": [
                             {
                               "key": "mysql.password",
-                              "path": "mysql-password ",
+                              "path": "mysql-password",
+                              "mode": "0400"
+                            },
+                            {
+                              "key": "mysql.operations.password",
+                              "path": "mysql-operations-password",
                               "mode": "0400"
                             },
                             {
                               "key": "mysql.root.password",
-                              "path": "mysql-root-password ",
+                              "path": "mysql-root-password",
                               "mode": "0400"
                             },
                           ]
@@ -209,6 +216,11 @@
                             {
                               "key": "mysql.user",
                               "path": "mysql-user",
+                              "mode": "0400"
+                            },
+                            {
+                              "key": "mysql.operations.user",
+                              "path": "mysql-operations-user",
                               "mode": "0400"
                             },
                             {
@@ -295,7 +307,7 @@
                           },
                           {
                             "name": "${APP_NAME}-cfmap-volume",
-                            "mountPath": "/tmp/shared/cfmap",
+                            "mountPath": "/tmp/shared/cfmap"
                           },
                           {
                             "name":  "${APP_NAME}-share",

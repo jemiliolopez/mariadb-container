@@ -129,7 +129,7 @@
              "name": "${SSH_GITHUB}"
           },
           // "contextDir": "test/test-app/mysql-cfg", 
-          "contextDir": "openshift/contexto/vacio",
+          "contextDir": "openshift/contexto",
           "git": {
             "ref": "${SOURCE_REPOSITORY_MYSQL_TAG}",
             "uri": "${SOURCE_REPOSITORY_MYSQL_URL}"
